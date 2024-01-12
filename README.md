@@ -1,4 +1,4 @@
-# Quran Repository
+# Quran
 
 Welcome to the Quran Repository! 📖✨
 
