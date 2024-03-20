@@ -1,0 +1,15 @@
+.df_f_ce {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.df_ai_ce {
+  display: flex;
+  align-items: center;
+}
+
+.df_jc_sb {
+  display: flex;
+  justify-content: space-between;
+}

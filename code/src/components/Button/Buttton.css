@@ -1,0 +1,29 @@
+button {
+  background: none;
+  border: 1px solid var(--grey-light);
+  padding: var(--pd-small-very) var(--pd-small);
+  border-radius: var(--bd-ra-small);
+}
+
+button:hover {
+  background-color: var(--grey-hover);
+}
+
+button:active {
+  background-color: var(--grey-active);
+  border-color: var(--grey-hover);
+}
+
+button[colorful='true'] {
+  background-color: var(--main-color);
+  border-color: vaR(--main-color-dark);
+}
+
+button[colorful='true']:hover {
+  background-color: var(--main-color-hover);
+}
+
+button[colorful='true']:active {
+  background-color: var(--main-color-active);
+  border-color: var(--main-color);
+}
