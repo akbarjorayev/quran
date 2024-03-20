@@ -1,0 +1,54 @@
+.input_area {
+  position: relative;
+  border: 1px solid var(--grey-light);
+  border-radius: var(--bd-ra-small);
+  padding: 0 var(--pd-small);
+  padding-left: 0;
+  overflow: hidden;
+}
+
+.input_area:hover {
+  background-color: var(--grey-hover);
+}
+
+.input_area:focus-within {
+  background-color: var(--grey-active);
+}
+
+.input_area:has(.error) {
+  border-color: var(--error-color);
+}
+
+.input_area:has(.error) label {
+  color: var(--error-color);
+}
+
+.input_area label {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  left: var(--pd-small);
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+}
+
+.input_area label.active {
+  left: calc(3 * var(--pd-small));
+  opacity: 0;
+}
+
+input {
+  padding: var(--pd-small-very) 0;
+  padding-left: var(--pd-small);
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.input_area button {
+  padding: 0 var(--pd-small-very);
+}
+
+.input_area button span {
+  font-size: 0.8em;
+}
