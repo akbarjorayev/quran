@@ -4,21 +4,42 @@ import Choose from '../../Choose/Choose'
 
 import * as FORM from '../../../js/utils/form'
 import { signup } from '../../../js/account/account'
+import { msgData } from '../../../js/utils/message'
 
 import '../Account.css'
-import { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+
+const Message = React.lazy(() => import('../../Message/Message'))
 
 function Signup() {
+  const [message, setMessage] = useState({
+    msg: '',
+    type: 'default',
+    show: false,
+  })
   const form = useRef(null)
 
-  function click() {
-    const data = FORM.getData(form?.current)
+  async function click() {
+    const formData = FORM.getData(form?.current)
+    if (!formData.ok) {
+      setMessage({ msg: formData.msg, type: 'error', show: true })
+      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      return
+    }
 
-    signup(data)
+    const signupData = await signup(formData)
+    if (!signupData.ok) {
+      setMessage({ msg: signupData.msg, type: 'error', show: true })
+      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      return
+    }
   }
 
   return (
     <div className="h_100 df_f_ce">
+      <Message show={message.show} type={message.type}>
+        {message.msg}
+      </Message>
       <div className="account_area list_y">
         <div className="df_ai_ce df_jc_sb">
           <div className="title">Signin</div>

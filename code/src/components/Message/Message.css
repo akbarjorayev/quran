@@ -1,0 +1,77 @@
+.message_area {
+  position: fixed;
+  left: 50%;
+  max-width: 90%;
+  background-color: var(--bg);
+  padding: var(--pd-small) var(--pd);
+  border: 1px solid var(--bd);
+  border-radius: var(--bd-ra);
+  animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    slideOut 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) 2s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    top: -100%;
+    transform: translate(-50%, -100%);
+  }
+  to {
+    top: var(--pd-small);
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    top: var(--pd-small);
+    transform: translate(-50%, 0);
+  }
+  to {
+    top: -100%;
+    transform: translate(-50%, -100%);
+  }
+}
+
+.message_area.success {
+  --bg: var(--success-color);
+  --bd: var(--success-color-border);
+  --bg-hover: var(--success-color-hover);
+  --bg-active: var(--success-color-active);
+}
+
+.message_area.error {
+  --bg: var(--error-color);
+  --bd: var(--error-color-border);
+  --bg-hover: var(--error-color-hover);
+  --bg-active: var(--error-color-active);
+}
+
+.message_area.warning {
+  --bg: var(--warning-color);
+  --bd: var(--warning-color-border);
+  --bg-hover: var(--warning-color-hover);
+  --bg-active: var(--warning-color-active);
+}
+
+.message_area div {
+  border-radius: var(--bd-ra);
+  padding: var(--pd-small);
+  max-width: max-content;
+  max-height: max-content;
+}
+
+.message_area div:hover {
+  background-color: var(--bg-hover);
+}
+
+.message_area div:active {
+  background-color: var(--bg-hover);
+  background-color: var(--bg-active);
+}
+
+:root {
+  --bg: var(--grey);
+  --bd: var(--grey-light);
+  --bg-hover: var(--grey-hover);
+  --bg-active: var(--grey-active);
+}

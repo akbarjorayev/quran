@@ -3,25 +3,48 @@ import Input from '../../Input/Input'
 
 import * as FORM from '../../../js/utils/form'
 import { login } from '../../../js/account/account'
+import { msgData } from '../../../js/utils/message'
 
 import '../Account.css'
-import { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+
+const Message = React.lazy(() => import('../../Message/Message'))
 
 function Signin() {
+  const [message, setMessage] = useState({
+    msg: '',
+    type: 'default',
+    show: false,
+  })
   const form = useRef(null)
 
-  function click() {
-    const data = FORM.getData(form?.current)
+  async function click() {
+    const formData = FORM.getData(form?.current)
+    if (!formData.ok) {
+      setMessage({ msg: formData.msg, type: 'error', show: true })
+      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      return
+    }
 
-    login(data)
+    const signupData = await login(formData)
+    if (!signupData.ok) {
+      setMessage({ msg: signupData.msg, type: 'error', show: true })
+      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      return
+    }
   }
 
   return (
     <div className="h_100 df_f_ce">
+      <Message show={message.show} type={message.type}>
+        {message.msg}
+      </Message>
       <div className="account_area list_y">
         <div className="df_ai_ce df_jc_sb">
           <div className="title">Log in</div>
-          <Button onClick={() => window.location.href = '/account/signup'}>Sign up</Button>
+          <Button onClick={() => (window.location.href = '/account/signup')}>
+            Sign up
+          </Button>
         </div>
         <div className="list_y" ref={form}>
           <div className="list_x df_ai_ce">

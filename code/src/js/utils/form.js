@@ -5,15 +5,16 @@ function getData(form) {
   if (!allHaveValue.ok) {
     allHaveValue.input.classList.add('error')
     allHaveValue.input.focus()
-    return
+
+    return allHaveValue
   }
 
   const { values } = allHaveValue
 
   const chosen = checkChooseArea(form)
 
-  if (chosen) return { inputs: values, chosen }
-  return { inputs: values }
+  if (chosen) return { inputs: values, chosen, ok: true }
+  return { inputs: values, ok: true }
 }
 
 function checkValues(form) {
