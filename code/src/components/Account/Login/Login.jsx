@@ -22,7 +22,10 @@ function Login() {
     const formData = FORM.getData(form?.current)
     if (!formData.ok) {
       setMessage({ msg: formData.msg, type: 'error', show: true })
-      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      setTimeout(
+        () => setMessage({ ...message, show: false }),
+        msgData.time * 1000
+      )
       return
     }
 
@@ -33,7 +36,10 @@ function Login() {
         type: loginData.msgType || 'error',
         show: true,
       })
-      setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
+      setTimeout(
+        () => setMessage({ ...message, show: false }),
+        msgData.time * 1000
+      )
       return
     }
   }

@@ -6,8 +6,10 @@
   padding: var(--pd-small) var(--pd);
   border: 1px solid var(--bd);
   border-radius: var(--bd-ra);
-  animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
-    slideOut 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) 2s forwards;
+  animation: slideIn var(--msg-anim-time) cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      forwards,
+    slideOut var(--msg-anim-time) cubic-bezier(0.55, 0.085, 0.68, 0.53)
+      var(--msg-show-time) forwards;
 }
 
 @keyframes slideIn {
@@ -74,4 +76,9 @@
   --bd: var(--grey-light);
   --bg-hover: var(--grey-hover);
   --bg-active: var(--grey-active);
+}
+
+:root {
+  --msg-show-time: 0;
+  --msg-anim-time: 0;
 }
