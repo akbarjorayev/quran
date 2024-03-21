@@ -29,7 +29,11 @@ function Signup() {
 
     const signupData = await signup(formData)
     if (!signupData.ok) {
-      setMessage({ msg: signupData.msg, type: 'error', show: true })
+      setMessage({
+        msg: signupData.msg,
+        type: signupData.msgType || 'error',
+        show: true,
+      })
       setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
       return
     }

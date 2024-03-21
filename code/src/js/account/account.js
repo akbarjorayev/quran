@@ -12,7 +12,7 @@ async function signup(data) {
 
   const notFreeUsername = await load(`accounts/${username}`)
   if (notFreeUsername) {
-    return { msg: 'Username has used', ok: false }
+    return { msg: 'Username has used', msgType: 'warning', ok: false }
   }
 
   await save(`accounts/${username}`, user)
@@ -36,17 +36,21 @@ async function login(data) {
 
   const localData = loadLocal('quran')
   if (localData.accounts.usernames.includes(username)) {
-    return { msg: 'You have already logged in', ok: false }
+    return { msg: 'You have already logged in', msgType: 'success', ok: false }
   }
 
   const account = await load(`accounts/${username.trim()}`)
 
   if (!account) {
-    return { msg: 'There is no account with this username', ok: false }
+    return {
+      msg: 'There is no account with this username',
+      msgType: 'warning',
+      ok: false,
+    }
   }
 
   if (account.password !== password) {
-    return { msg: 'Wrong password', ok: false }
+    return { msg: 'Wrong password', msgType: 'warning', ok: false }
   }
 
   saveLocal('quran', {

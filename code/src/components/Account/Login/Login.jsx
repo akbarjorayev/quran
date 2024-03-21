@@ -10,7 +10,7 @@ import React, { useRef, useState } from 'react'
 
 const Message = React.lazy(() => import('../../Message/Message'))
 
-function Signin() {
+function Login() {
   const [message, setMessage] = useState({
     msg: '',
     type: 'default',
@@ -26,9 +26,13 @@ function Signin() {
       return
     }
 
-    const signupData = await login(formData)
-    if (!signupData.ok) {
-      setMessage({ msg: signupData.msg, type: 'error', show: true })
+    const loginData = await login(formData)
+    if (!loginData.ok) {
+      setMessage({
+        msg: loginData.msg,
+        type: loginData.msgType || 'error',
+        show: true,
+      })
       setTimeout(() => setMessage({ ...message, show: false }), msgData.time)
       return
     }
@@ -64,4 +68,4 @@ function Signin() {
   )
 }
 
-export default Signin
+export default Login
