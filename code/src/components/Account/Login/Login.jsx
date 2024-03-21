@@ -18,7 +18,7 @@ function Login() {
   })
   const form = useRef(null)
 
-  async function click() {
+  async function handleLogin() {
     const formData = FORM.getData(form?.current)
     if (!formData.ok) {
       setMessage({ msg: formData.msg, type: 'error', show: true })
@@ -65,7 +65,7 @@ function Login() {
             <span className="material-symbols-outlined">vpn_key</span>
             <Input type="password" label="Password" maxLength="20" />
           </div>
-          <Button colorful="true" onClick={click}>
+          <Button colorful="true" onClick={handleLogin}>
             Log in
           </Button>
         </div>
