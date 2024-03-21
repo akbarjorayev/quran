@@ -1,22 +1,17 @@
-let audioElement = null
-
-function play(audioFile) {
-  if (audioElement) audioElement.pause()
-
-  audioElement = new Audio(audioFile)
-  audioElement.play()
+function play(audio) {
+  audio.play()
 }
 
-function pause() {
-  if (audioElement) audioElement.pause()
+function pause(audio) {
+  if (audio) audio.pause()
 }
 
-function resume() {
-  if (audioElement && audioElement.paused) audioElement.play()
+function resume(audio) {
+  if (audio && audio.paused) play(audio)
 }
 
-function setVolume(volume) {
-  if (audioElement) audioElement.volume = volume
+function setVolume(volume, autio) {
+  if (autio) autio.volume = volume
 }
 
 export { play, pause, resume, setVolume }
