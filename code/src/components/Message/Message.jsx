@@ -19,6 +19,7 @@ function Message({ children, type = 'default', show }) {
     <div className={`message_area list_x df_ai_ce ${type}`}>
       {icon}
       <p>{children}</p>
+      <div className='message_timeline'></div>
     </div>
   )
 }
