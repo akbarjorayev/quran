@@ -23,6 +23,7 @@ async function signup(data) {
       active: username,
     },
   })
+  return { ok: true }
 }
 
 async function login(data) {
@@ -59,6 +60,7 @@ async function login(data) {
       usernames: [...localData.accounts.usernames, username],
     },
   })
+  return { ok: true }
 }
 
 export { signup, login }
