@@ -37,45 +37,21 @@
 .message_area.success {
   --bg: var(--success-color);
   --bd: var(--success-color-border);
-  --bg-hover: var(--success-color-hover);
-  --bg-active: var(--success-color-active);
 }
 
 .message_area.error {
   --bg: var(--error-color);
   --bd: var(--error-color-border);
-  --bg-hover: var(--error-color-hover);
-  --bg-active: var(--error-color-active);
 }
 
 .message_area.warning {
   --bg: var(--warning-color);
   --bd: var(--warning-color-border);
-  --bg-hover: var(--warning-color-hover);
-  --bg-active: var(--warning-color-active);
-}
-
-.message_area div {
-  border-radius: var(--bd-ra);
-  padding: var(--pd-small);
-  max-width: max-content;
-  max-height: max-content;
-}
-
-.message_area div:hover {
-  background-color: var(--bg-hover);
-}
-
-.message_area div:active {
-  background-color: var(--bg-hover);
-  background-color: var(--bg-active);
 }
 
 :root {
   --bg: var(--grey);
   --bd: var(--grey-light);
-  --bg-hover: var(--grey-hover);
-  --bg-active: var(--grey-active);
 }
 
 :root {

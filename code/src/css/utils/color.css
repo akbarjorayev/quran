@@ -22,22 +22,16 @@
 
   :root {
     --error-color: #ba3737;
-    --error-color-hover: #d48686;
-    --error-color-active: #5d2b2b;
     --error-color-border: #dc8787;
   }
   
   :root {
     --success-color: #1a6415;
-    --success-color-hover: #4f9e49;
-    --success-color-active: #255222;
     --success-color-border: #91d28b;
   }
   
   :root {
     --warning-color: #807b20;
-    --warning-color-hover: #bab65d;
-    --warning-color-active: #625f2d;
     --warning-color-border: #ccd28b;
   }
 }
