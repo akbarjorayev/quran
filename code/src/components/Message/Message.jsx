@@ -8,7 +8,7 @@ const icons = {
 }
 
 function getIcon(type) {
-  return <span className="material-symbols-outlined">{icons[type]}</span>
+  return <span className="material-symbols-outlined icon">{icons[type]}</span>
 }
 
 function Message({ children, type = 'default', show }) {
@@ -19,7 +19,7 @@ function Message({ children, type = 'default', show }) {
     <div className={`message_area list_x df_ai_ce ${type}`}>
       {icon}
       <p>{children}</p>
-      <div className='message_timeline'></div>
+      <div className="message_timeline"></div>
     </div>
   )
 }

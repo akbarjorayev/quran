@@ -51,6 +51,25 @@
   --bd: var(--warning-color-border);
 }
 
+.message_area .icon {
+  animation: iconScale 0.5s ease 0.3s forwards;
+}
+
+@keyframes iconScale {
+  0% {
+    scale: 0;
+  }
+  40% {
+    scale: 1.2;
+  }
+  90% {
+    scale: 0.9;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 .message_timeline {
   position: absolute;
   bottom: 0;
