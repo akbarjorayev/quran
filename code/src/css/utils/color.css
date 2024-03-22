@@ -21,6 +21,17 @@
   }
 
   :root {
-    --error-color: #ff5757;
+    --error-color: #ba3737;
+    --error-color-border: #dc8787;
+  }
+  
+  :root {
+    --success-color: #1a6415;
+    --success-color-border: #91d28b;
+  }
+  
+  :root {
+    --warning-color: #807b20;
+    --warning-color-border: #ccd28b;
   }
 }
