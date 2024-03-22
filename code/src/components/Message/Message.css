@@ -2,9 +2,9 @@
   position: fixed;
   left: 50%;
   max-width: 90%;
-  background-color: var(--bg);
+  background-color: var(--msg-bg);
   padding: var(--pd-small) var(--pd);
-  border: 1px solid var(--bd);
+  border: 1px solid var(--msg-bd);
   border-radius: var(--bd-ra);
   overflow: hidden;
   padding-bottom: calc(var(--pd-small) + var(--msg-timeline-size));
@@ -37,18 +37,18 @@
 }
 
 .message_area.success {
-  --bg: var(--success-color);
-  --bd: var(--success-color-border);
+  --msg-bg: var(--success-color);
+  --msg-bd: var(--success-color-border);
 }
 
 .message_area.error {
-  --bg: var(--error-color);
-  --bd: var(--error-color-border);
+  --msg-bg: var(--error-color);
+  --msg-bd: var(--error-color-border);
 }
 
 .message_area.warning {
-  --bg: var(--warning-color);
-  --bd: var(--warning-color-border);
+  --msg-bg: var(--warning-color);
+  --msg-bd: var(--warning-color-border);
 }
 
 .message_area .icon {
@@ -88,8 +88,8 @@
 }
 
 :root {
-  --bg: var(--grey);
-  --bd: var(--grey-light);
+  --msg-bg: var(--grey);
+  --msg-bd: var(--grey-border);
 }
 
 :root {

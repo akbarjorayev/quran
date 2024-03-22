@@ -1,0 +1,36 @@
+.menu_area {
+  height: 100%;
+}
+
+.menu_con {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: var(--bd-ra);
+  width: 100%;
+}
+
+.menu_area button {
+  width: 80%;
+  aspect-ratio: 1/1;
+  border-radius: 1em;
+}
+
+.menu_area button.active {
+  background-color: var(--main-color-dark);
+}
+
+.menu_area button.active:hover {
+  background-color: var(--main-color-hover);
+}
+
+.menu_area button.active:active {
+  background-color: var(--main-color-active);
+  border-color: var(--main-color-light);
+}
+
+.menu_area img {
+  width: 100%;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}

@@ -1,6 +1,7 @@
 button {
   background: none;
-  border: 1px solid var(--grey-light);
+  background-color: var(--bg);
+  border: 1px solid var(--grey-border);
   padding: var(--pd-small-very) var(--pd-small);
   border-radius: var(--bd-ra-small);
 }

@@ -1,6 +1,7 @@
 .input_area {
   position: relative;
-  border: 1px solid var(--grey-light);
+  border: 1px solid var(--grey-border);
+  background-color: var(--bg);
   border-radius: var(--bd-ra-small);
   padding: 0 var(--pd-small);
   padding-left: 0;

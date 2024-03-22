@@ -1,0 +1,10 @@
+.line_y {
+  width: var(--line-size);
+  height: 100%;
+  background-color: var(--grey-light);
+  border-radius: 1em;
+}
+
+:root {
+  --line-size: 3px;
+}

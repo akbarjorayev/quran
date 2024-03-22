@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.df_jc_ce {
+  display: flex;
+  justify-content: center;
+}
+
 .df_jc_sb {
   display: flex;
   justify-content: space-between;

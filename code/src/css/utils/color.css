@@ -5,11 +5,17 @@
   }
 
   :root {
+    --bg: #414141;
+    --bg-dark: #232323;
+  }
+
+  :root {
     --grey: #3d3d3d;
     --grey-dark: #2a2a2a;
     --grey-light: #848484;
     --grey-hover: #626262;
     --grey-active: #2e2e2e;
+    --grey-border: #9c9c9c;
   }
 
   :root {
