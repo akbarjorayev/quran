@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './css/App.css'
 
-const Signup = React.lazy(() => import('./components/Account/Signup/Signup'))
-const Login = React.lazy(() => import('./components/Account/Login/Login'))
+const Signup = React.lazy(() => import('./pages/Account/Signup/Signup'))
+const Login = React.lazy(() => import('./pages/Account/Login/Login'))
 
 function App() {
   return (

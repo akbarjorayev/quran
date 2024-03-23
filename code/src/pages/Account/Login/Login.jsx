@@ -1,5 +1,5 @@
-import Button from '../../Button/Button'
-import Input from '../../Input/Input'
+import Button from '../../../components/Button/Button'
+import Input from '../../../components/Input/Input'
 
 import * as FORM from '../../../js/utils/form'
 import { login } from '../../../js/account/account'
@@ -8,7 +8,7 @@ import { msgData } from '../../../js/utils/message'
 import '../Account.css'
 import React, { useRef, useState } from 'react'
 
-const Message = React.lazy(() => import('../../Message/Message'))
+const Message = React.lazy(() => import('../../../components/Message/Message'))
 
 function Login() {
   const [message, setMessage] = useState({
