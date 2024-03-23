@@ -35,6 +35,10 @@
   background-color: var(--grey-active);
 }
 
+.option > * {
+  pointer-events: none;
+}
+
 span {
   pointer-events: none;
   white-space: nowrap;
