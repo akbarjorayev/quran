@@ -1,17 +1,23 @@
+import { useRef } from 'react'
 import Button from '../Button/Button'
 
 import './Menu.css'
 
 function Menu({ setActievPage }) {
+  const menu = useRef(null)
+
   function activeClick(btn) {
     const active = btn.target.getAttribute('active')
-
     setActievPage(active)
+
+    const activeBtn = menu.current?.querySelector('button.active')
+    if (activeBtn) activeBtn.classList.remove('active')
+    btn.target.classList.add('active')
   }
 
   return (
     <div className="menu_area list_x">
-      <div className="menu_con list_y">
+      <div className="menu_con list_y" ref={menu}>
         <div className="list_y df_ai_ce">
           <Button className="active" active="home" onClick={activeClick}>
             <span className="material-symbols-outlined">home</span>
