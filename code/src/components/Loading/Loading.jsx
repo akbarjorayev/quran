@@ -21,7 +21,7 @@ function Loading({ children, size }) {
           }}
         ></div>
       </div>
-      <div className="loading_text">{children || 'Loading...'}</div>
+      <div className="loading_text">{children}</div>
     </div>
   )
 }
