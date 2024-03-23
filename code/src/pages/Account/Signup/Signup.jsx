@@ -60,7 +60,7 @@ function Signup() {
         <div className="list_y" ref={form}>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">person</span>
-            <Input type="text" label="Name" maxLength="20" />
+            <Input type="text" label="Name" maxLength="20" autoFocus />
           </div>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">person</span>
