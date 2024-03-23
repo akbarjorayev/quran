@@ -2,18 +2,24 @@ import Button from '../Button/Button'
 
 import './Menu.css'
 
-function Menu() {
+function Menu({ setActievPage }) {
+  function activeClick(btn) {
+    const active = btn.target.getAttribute('active')
+
+    setActievPage(active)
+  }
+
   return (
     <div className="menu_area list_x">
       <div className="menu_con list_y">
         <div className="list_y df_ai_ce">
-          <Button className="active">
+          <Button className="active" active="home" onClick={activeClick}>
             <span className="material-symbols-outlined">home</span>
           </Button>
           <Button>
             <span className="material-symbols-outlined">search</span>
           </Button>
-          <Button>
+          <Button active="quran" onClick={activeClick}>
             <span className="material-symbols-outlined">menu_book</span>
           </Button>
         </div>
@@ -25,7 +31,7 @@ function Menu() {
               alt=""
             />
           </Button>
-          <Button>
+          <Button active="settings" onClick={activeClick}>
             <span className="material-symbols-outlined">settings</span>
           </Button>
         </div>

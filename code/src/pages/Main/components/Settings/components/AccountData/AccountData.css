@@ -1,0 +1,5 @@
+.account_con {
+  border: 2px solid var(--main-color-border);
+  border-radius: var(--bd-ra);
+  padding: var(--pd-small);
+}
