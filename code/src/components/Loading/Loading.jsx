@@ -7,7 +7,7 @@ function Loading({ children, size }) {
         <div
           className="loading_spinner"
           style={{
-            '--loading-bd-color': 'var(--main-color)',
+            '--loading-bd-color': 'var(--main-color-light)',
             '--loading-rotate-deg': '45deg',
             '--loading-anim-duration': '.2s',
           }}
