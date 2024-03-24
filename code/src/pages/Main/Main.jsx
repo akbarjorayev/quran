@@ -18,7 +18,10 @@ function Main() {
   return (
     <div className="main_area">
       <div className="menu">
-        <Menu setActievPage={setActievPage} setShowSearch={setShowSearch} />
+        <Menu
+          setActievPage={setActievPage}
+          useSearch={() => [showSearch, setShowSearch]}
+        />
       </div>
       {showSearch && (
         <div className="search_area df_f">

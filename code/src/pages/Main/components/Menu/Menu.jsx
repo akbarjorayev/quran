@@ -3,14 +3,15 @@ import Button from '../../../../components/Button/Button'
 
 import './Menu.css'
 
-function Menu({ setActievPage, setShowSearch }) {
+function Menu({ setActievPage, useSearch }) {
   const menu = useRef(null)
+  const [showSearch, setShowSearch] = useSearch()
 
   function activeClick(btn) {
     const active = btn.target.getAttribute('active')
     setActievPage(active)
 
-    const activeBtn = menu.current?.querySelector('button.active')
+    const activeBtn = menu.current?.querySelector('button[active].active')
     if (activeBtn) activeBtn.classList.remove('active')
     btn.target.classList.add('active')
   }
@@ -22,7 +23,10 @@ function Menu({ setActievPage, setShowSearch }) {
           <Button className="active" active="home" onClick={activeClick}>
             <span className="material-symbols-outlined">home</span>
           </Button>
-          <Button onClick={() => setShowSearch((cur) => !cur)}>
+          <Button
+            className={showSearch ? 'active' : ''}
+            onClick={() => setShowSearch((cur) => !cur)}
+          >
             <span className="material-symbols-outlined">search</span>
           </Button>
           <Button active="quran" onClick={activeClick}>
