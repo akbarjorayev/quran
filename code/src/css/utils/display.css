@@ -1,3 +1,7 @@
+.df_f {
+  display: flex;
+}
+
 .df_f_ce {
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@ import Button from '../../../../components/Button/Button'
 
 import './Menu.css'
 
-function Menu({ setActievPage }) {
+function Menu({ setActievPage, setShowSearch }) {
   const menu = useRef(null)
 
   function activeClick(btn) {
@@ -22,7 +22,7 @@ function Menu({ setActievPage }) {
           <Button className="active" active="home" onClick={activeClick}>
             <span className="material-symbols-outlined">home</span>
           </Button>
-          <Button>
+          <Button onClick={() => setShowSearch((cur) => !cur)}>
             <span className="material-symbols-outlined">search</span>
           </Button>
           <Button active="quran" onClick={activeClick}>
