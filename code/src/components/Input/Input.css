@@ -71,10 +71,13 @@ input {
   aspect-ratio: 1/1;
   padding: 0 var(--pd-small-very);
   opacity: 0;
+  scale: 0;
+  transition: scale 0.3s ease;
 }
 
-.input_area:hover button,
-.input_area:focus-within button {
+.input_area:focus-within button,
+.input_area:focus-within:hover button {
+  scale: 1;
   opacity: 1;
 }
 
