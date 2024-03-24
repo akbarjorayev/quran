@@ -4,7 +4,7 @@ import Settings from './components/Settings/Settings'
 
 import './Main.css'
 
-const Menu = React.lazy(() => import('../../components/Menu/Menu'))
+const Menu = React.lazy(() => import('./components/Menu/Menu'))
 
 const pages = {
   settings: <Settings />,
