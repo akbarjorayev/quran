@@ -24,9 +24,9 @@ function Main() {
         />
       </div>
       {showSearch && (
-        <div className="search_area df_f">
+        <div className="alert_win df_jc_ce">
+          <div className="alert_bg" onClick={() => setShowSearch(false)}></div>
           <Search />
-          <div className="line_y"></div>
         </div>
       )}
       <div className="main">

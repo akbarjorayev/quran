@@ -7,6 +7,9 @@
   :root {
     --bg: #4f4f4f;
     --bg-dark: #232323;
+    --bg-hover: #636363;
+    --bg-active: #252525;
+    --bg-opa: #191a1e75;
   }
 
   :root {
@@ -45,5 +48,10 @@
   :root {
     --gender-male-color: #1734b5;
     --gender-female-color: #ba3232;
+  }
+
+  :root {
+    --scrollbar-bg: #222254;
+    --scrollbar-thumb-bg: #80809c;
   }
 }

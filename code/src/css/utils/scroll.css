@@ -1,0 +1,32 @@
+/* scroll */
+.scroll_y {
+  overflow: hidden auto;
+}
+
+.scroll_y::-webkit-scrollbar {
+  width: var(--scroll-size);
+}
+
+.scroll_x {
+  overflow: auto hidden;
+}
+
+.scroll_x::-webkit-scrollbar {
+  height: var(--scroll-size);
+}
+
+.scroll_y::-webkit-scrollbar,
+.scroll_x::-webkit-scrollbar {
+  border-radius: var(--bd-ra);
+  background-color: var(--scrollbar-bg);
+}
+
+.scroll_y::-webkit-scrollbar-thumb,
+.scroll_x::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg);
+  border-radius: var(--bd-ra);
+}
+
+:root {
+  --scroll-size: 5px;
+}

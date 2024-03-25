@@ -10,14 +10,6 @@
   height: 100%;
 }
 
-.search_area {
-  position: absolute;
-  margin-left: var(--menu-size);
-  background-color: var(--bg-dark);
-  height: 100%;
-  z-index: 1;
-}
-
 .main {
   margin-left: calc(var(--menu-size) + var(--mar-small));
   flex: 1;
