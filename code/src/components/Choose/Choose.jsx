@@ -29,7 +29,7 @@ function Choose({ axe, label, children, iOption }) {
   }, [])
 
   useEffect(() => {
-    if (chooseArea.current.children.length - 1 !== children.length) return
+    if (chooseArea.current.children.length !== children.length) return
 
     const child = chooseArea.current?.children[0]
     if (axe === 'x') {
@@ -69,24 +69,26 @@ function Choose({ axe, label, children, iOption }) {
     <div className={`choose_area list_y ${axe}`}>
       <label className="title fz_normal">{label}</label>
       <div className="line_x"></div>
-      <div ref={chooseArea} className={`choose_con list_${axe}`}>
-        {children.map((child, i) => {
-          const isActive = i === 0
-          if (child.props.children.toLowerCase() === iOption && !iActive)
-            setIActive(i)
-
-          return (
-            <div
-              className={`option ${isActive ? 'active' : ''}`}
-              key={i}
-              onClick={chose}
-              index={i}
-            >
-              {child}
-            </div>
-          )
-        })}
+      <div className="choose_con_area">
         <div className="chosen" style={chosenStyle} index={activeChildI}></div>
+        <div ref={chooseArea} className={`choose_con list_${axe}`}>
+          {children.map((child, i) => {
+            const isActive = i === 0
+            if (child.props.children.toLowerCase() === iOption && !iActive)
+              setIActive(i)
+
+            return (
+              <div
+                className={`option ${isActive ? 'active' : ''}`}
+                key={i}
+                onClick={chose}
+                index={i}
+              >
+                {child}
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+.choose_con_area {
+  position: relative;
+}
+
 .choose_con {
   display: flex;
   position: relative;
@@ -24,7 +28,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 1;
 }
 
 .option:not(.active):hover {
