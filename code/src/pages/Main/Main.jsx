@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 
+import Menu from './components/Menu/Menu'
 import Settings from './components/Settings/Settings'
 import Search from './components/Search/Search'
+import Quran from './components/Quran/Quran'
+import Home from './components/Home/Home'
 
 import './Main.css'
 
-const Menu = React.lazy(() => import('./components/Menu/Menu'))
-
 const pages = {
+  home: <Home />,
+  quran: <Quran />,
   settings: <Settings />,
 }
 
 function Main() {
-  const [activePage, setActievPage] = useState('settings')
+  const [activePage, setActievPage] = useState('home')
   const [showSearch, setShowSearch] = useState(false)
 
   return (
@@ -29,14 +32,7 @@ function Main() {
           <Search />
         </div>
       )}
-      <div className="main">
-        {activePage === 'home' && (
-          <>
-            <h1>Home</h1>
-          </>
-        )}
-        {pages[activePage]}
-      </div>
+      <div className="main">{pages[activePage]}</div>
     </div>
   )
 }

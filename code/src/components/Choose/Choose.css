@@ -1,7 +1,6 @@
 .choose_area {
   position: relative;
-  border: 1px solid var(--grey-border);
-  padding: var(--pd-small-very) var(--pd-small);
+  padding: var(--pd-small-very) 0;
   border-radius: var(--bd-ra-small);
 }
 
