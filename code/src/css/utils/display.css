@@ -1,3 +1,7 @@
+.df_f {
+  display: flex;
+}
+
 .df_f_ce {
   display: flex;
   align-items: center;
@@ -7,6 +11,11 @@
 .df_ai_ce {
   display: flex;
   align-items: center;
+}
+
+.df_jc_ce {
+  display: flex;
+  justify-content: center;
 }
 
 .df_jc_sb {

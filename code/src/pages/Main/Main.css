@@ -1,0 +1,25 @@
+.main_area {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.menu {
+  width: var(--menu-size);
+  position: absolute;
+  height: 100%;
+}
+
+.main {
+  margin-left: calc(var(--menu-size) + var(--mar-small));
+  flex: 1;
+}
+
+.main img {
+  width: 200px;
+  height: 200px;
+}
+
+:root {
+  --menu-size: 70px;
+}

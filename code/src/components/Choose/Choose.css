@@ -1,12 +1,15 @@
 .choose_area {
   position: relative;
-  border: 1px solid var(--grey-light);
-  padding: var(--pd-small-very) var(--pd-small);
+  padding: var(--pd-small-very) 0;
   border-radius: var(--bd-ra-small);
 }
 
 .choose_area.y {
   flex-direction: column;
+}
+
+.choose_con_area {
+  position: relative;
 }
 
 .choose_con {
@@ -24,7 +27,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 1;
 }
 
 .option:not(.active):hover {
@@ -33,6 +35,10 @@
 
 .option:not(.active):active {
   background-color: var(--grey-active);
+}
+
+.option > * {
+  pointer-events: none;
 }
 
 span {

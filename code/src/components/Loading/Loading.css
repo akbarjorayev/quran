@@ -1,6 +1,10 @@
-.loading_area {
+.loading_area:has(.loading_con) {
   position: relative;
-  overflow: hidden;
+  overflow: hidden !important;
+}
+
+.loading_area:has(.loading_con) > *:not(.loading_con) {
+  display: none;
 }
 
 .loading_con {

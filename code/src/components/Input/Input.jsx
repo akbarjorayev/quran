@@ -1,16 +1,23 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Button from '../Button/Button'
 
 import './Input.css'
 
-const Input = React.forwardRef(({ label, ...props }, ref) => {
+const Input = React.forwardRef(({ label, value: iValue, ...props }, ref) => {
   const inputRef = useRef(null)
+  const [value, setValue] = useState(iValue || '')
   const [labelActive, setLabelActive] = useState(false)
   const [seePassword, setSeePassword] = useState('visibility')
 
+  useEffect(() => {
+    if (!value) return setLabelActive(false)
+    if (!labelActive) setLabelActive(true)
+  }, [value, labelActive])
+
   function handleInputChange() {
+    setValue(() => inputRef.current.value)
+
     inputRef.current.classList.remove('error')
-    setLabelActive(inputRef.current.value.length > 0)
   }
 
   function setInputRef(input) {
@@ -19,18 +26,19 @@ const Input = React.forwardRef(({ label, ...props }, ref) => {
     else if (ref) ref.current = input
   }
 
-  function clearValue() {
+  function handleClick() {
+    inputRef.current.focus()
     if (props.type === 'text') {
-      inputRef.current.value = ''
-      setLabelActive(false)
+      setValue('')
+      return
     }
+
     if (props.type === 'password') {
       const { type } = inputRef.current
 
       inputRef.current.type = type === 'text' ? 'password' : 'text'
       setSeePassword(type === 'text' ? 'visibility' : 'visibility_off')
     }
-    inputRef.current.focus()
   }
 
   return (
@@ -38,10 +46,11 @@ const Input = React.forwardRef(({ label, ...props }, ref) => {
       <label className={labelActive ? 'active' : ''}>{label}</label>
       <input
         {...props}
+        value={value}
         ref={(input) => setInputRef(input)}
         onChange={handleInputChange}
       />
-      <Button className="fz_small df_ce" onClick={clearValue}>
+      <Button className="fz_small df_ce" onClick={handleClick}>
         {props.type === 'password' && (
           <span className="material-symbols-outlined">{seePassword}</span>
         )}

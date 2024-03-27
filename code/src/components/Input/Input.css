@@ -1,6 +1,6 @@
 .input_area {
   position: relative;
-  border: 1px solid var(--grey-light);
+  background-color: var(--bg);
   border-radius: var(--bd-ra-small);
   padding: 0 var(--pd-small);
   padding-left: 0;
@@ -16,11 +16,32 @@
 }
 
 .input_area:has(.error) {
-  border-color: var(--error-color);
+  background-color: color-mix(
+    in srgb,
+    var(--error-color) 50%,
+    var(--theme-color) 50%
+  );
+  color: var(--error-color);
 }
 
-.input_area:has(.error) label {
-  color: var(--error-color);
+.input_area:has(.error) input {
+  caret-color: var(--error-color);
+}
+
+.input_area:has(.error) button {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color) 50%,
+    var(--theme-color) 50%
+  );
+}
+
+.input_area:has(.error) button:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--error-color) 70%,
+    var(--theme-color) 50%
+  );
 }
 
 .input_area label {
@@ -46,7 +67,18 @@ input {
 }
 
 .input_area button {
+  width: 20px;
+  aspect-ratio: 1/1;
   padding: 0 var(--pd-small-very);
+  opacity: 0;
+  scale: 0;
+  transition: scale 0.3s ease;
+}
+
+.input_area:focus-within button,
+.input_area:focus-within:hover button {
+  scale: 1;
+  opacity: 1;
 }
 
 .input_area button span {
