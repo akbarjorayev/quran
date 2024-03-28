@@ -76,7 +76,7 @@ function Choose({ axe, label, children, iOption }) {
         <div ref={chooseArea} className={`choose_con list_${axe}`}>
           {children.map((child, i) => {
             const isActive = i === 0
-            if (child.props.option === iOption && !iActive) setIActive(i)
+            if (child.props.option === iOption && !iActive && i) setIActive(i)
 
             return (
               <div
