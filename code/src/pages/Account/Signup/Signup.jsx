@@ -54,7 +54,7 @@ function Signup() {
       </Message>
       <div className="account_area list_y">
         <div className="df_ai_ce df_jc_sb">
-          <div className="title">Signin</div>
+          <div className="title">Sign up</div>
           <Button onClick={() => (window.location.href = '/account/login')}>
             Log in
           </Button>
@@ -69,8 +69,18 @@ function Signup() {
             <Input type="text" label="Username" maxLength="20" />
           </div>
           <Choose axe="x" label="Gender">
-            <span>Male</span>
-            <span>Female</span>
+            <div className="list_x df_ai_ce" option="male">
+              <span className="material-symbols-outlined fz_normal gender_male">
+                male
+              </span>
+              <div>Male</div>
+            </div>
+            <div className="list_x df_ai_ce" option="female">
+              <span className="material-symbols-outlined fz_normal gender_female">
+                female
+              </span>
+              <div>Female</div>
+            </div>
           </Choose>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">vpn_key</span>
