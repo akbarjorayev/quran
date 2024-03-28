@@ -1,5 +1,7 @@
 .loading_area:has(.loading_con) {
   position: relative;
+  min-width: var(--loading-size);
+  min-height: var(--loading-size);
   overflow: hidden !important;
 }
 
