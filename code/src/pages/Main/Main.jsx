@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Menu from './components/Menu/Menu'
 import Settings from './components/Settings/Settings'
 import Search from './components/Search/Search'
 import Quran from './components/Quran/Quran'
 import Home from './components/Home/Home'
+
+import useTitle from '../../hooks/useTitle'
+
+import { txtCapitalizeFirstLetter } from '../../js/utils/txt'
 
 import './Main.css'
 
@@ -17,6 +21,12 @@ const pages = {
 function Main() {
   const [activePage, setActievPage] = useState('home')
   const [showSearch, setShowSearch] = useState(false)
+  const [title, setTitle] = useTitle(activePage)
+
+  useEffect(() => {
+    const newTitle = txtCapitalizeFirstLetter(activePage)
+    setTitle(newTitle)
+  }, [activePage])
 
   return (
     <div className="main_area">

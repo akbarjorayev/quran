@@ -4,6 +4,7 @@ import Input from '../../../components/Input/Input'
 import * as FORM from '../../../js/utils/form'
 import { login } from '../../../js/account/account'
 import { msgData } from '../../../js/utils/message'
+import useTitle from '../../../hooks/useTitle'
 
 import '../Account.css'
 import React, { useRef, useState } from 'react'
@@ -17,6 +18,7 @@ function Login() {
     show: false,
   })
   const form = useRef(null)
+  useTitle('Log in')
 
   async function handleLogin() {
     const formData = FORM.getData(form?.current)
