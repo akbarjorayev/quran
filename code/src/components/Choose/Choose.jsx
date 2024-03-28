@@ -67,15 +67,16 @@ function Choose({ axe, label, children, iOption }) {
 
   return (
     <div className={`choose_area list_y ${axe}`}>
-      <label className="title fz_normal">{label}</label>
-      <div className="line_x"></div>
+      <div>
+        <label className="title fz_normal">{label}</label>
+        <div className="line_x"></div>
+      </div>
       <div className="choose_con_area">
         <div className="chosen" style={chosenStyle} index={activeChildI}></div>
         <div ref={chooseArea} className={`choose_con list_${axe}`}>
           {children.map((child, i) => {
             const isActive = i === 0
-            if (child.props.children.toLowerCase() === iOption && !iActive)
-              setIActive(i)
+            if (child.props.option === iOption && !iActive) setIActive(i)
 
             return (
               <div
