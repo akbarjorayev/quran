@@ -5,6 +5,7 @@ import Choose from '../../../components/Choose/Choose'
 import * as FORM from '../../../js/utils/form'
 import { signup } from '../../../js/account/account'
 import { msgData } from '../../../js/utils/message'
+import useTitle from '../../../hooks/useTitle'
 
 import '../Account.css'
 import React, { useRef, useState } from 'react'
@@ -18,6 +19,7 @@ function Signup() {
     show: false,
   })
   const form = useRef(null)
+  useTitle('Sign up')
 
   async function handleSignup() {
     const formData = FORM.getData(form?.current)
