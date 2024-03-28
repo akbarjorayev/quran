@@ -2,6 +2,7 @@
   position: fixed;
   left: 50%;
   max-width: 90%;
+  z-index: 1;
   background-color: var(--msg-bg);
   padding: var(--pd-small) var(--pd);
   border-radius: var(--bd-ra);
