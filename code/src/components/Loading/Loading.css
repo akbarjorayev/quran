@@ -1,6 +1,8 @@
 .loading_area:has(.loading_con) {
   position: relative;
   overflow: hidden !important;
+  min-width: var(--loading-size);
+  min-height: var(--loading-size);
 }
 
 .loading_area:has(.loading_con) > *:not(.loading_con) {
