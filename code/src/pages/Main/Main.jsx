@@ -5,6 +5,7 @@ import Settings from './components/Settings/Settings'
 import Search from './components/Search/Search'
 import Quran from './components/Quran/Quran'
 import Home from './components/Home/Home'
+import Account from './components/Account/Account'
 
 import useTitle from '../../hooks/useTitle'
 
@@ -15,6 +16,7 @@ import './Main.css'
 const pages = {
   home: <Home />,
   quran: <Quran />,
+  account: <Account />,
   settings: <Settings />,
 }
 

@@ -1,4 +1,4 @@
-import { save, load } from '../db/db'
+import { save, load, edit as editDB } from '../db/db'
 import { loadLocal, saveLocal } from '../db/localStorage'
 
 async function signup(data) {
@@ -63,4 +63,22 @@ async function login(data) {
   return { ok: true }
 }
 
-export { signup, login }
+async function edit(username, newData) {
+  if (!newData.ok) return { msg: 'Wrong data', ok: false }
+
+  const user = {
+    ...newData.inputs,
+    ...newData.chosen,
+  }
+
+  await editDB(`accounts/${username}`, user)
+}
+
+async function getAccount(username) {
+  const account = await load(`accounts/${username}`)
+  if (!account) return null
+
+  return account
+}
+
+export { signup, login, getAccount, edit }

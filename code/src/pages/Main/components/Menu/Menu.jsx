@@ -34,7 +34,7 @@ function Menu({ setActievPage, useSearch }) {
           </Button>
         </div>
         <div className="list_y df_ai_ce">
-          <Button>
+          <Button active="account" onClick={activeClick}>
             <img
               src="https://i.stack.imgur.com/34AD2.jpg"
               loading="lazy"
