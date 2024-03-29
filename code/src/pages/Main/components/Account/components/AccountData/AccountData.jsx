@@ -48,6 +48,13 @@ function AccountData() {
     await edit(username, formData)
 
     setSaving(false)
+    setEditing(false)
+
+    setMessage({ msg: 'Changes saved', type: 'success', show: true })
+    setTimeout(
+      () => setMessage({ ...message, show: false }),
+      msgData.time * 1000
+    )
   }
 
   if (account === null) return null
@@ -98,6 +105,9 @@ function AccountData() {
   return (
     <>
       <div className="con_bd_cl loading_area df_ai_ce df_jc_sb">
+        <Message show={message.show} type={message.type}>
+          {message.msg}
+        </Message>
         <div className="list_x df_ai_ce">
           <b className="name df_ai_ce">
             {account?.gender === 'male' && (
