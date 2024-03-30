@@ -5,6 +5,7 @@
   padding: 0 var(--pd-small);
   padding-left: 0;
   overflow: hidden;
+  width: 100%;
 }
 
 .input_area:hover {
