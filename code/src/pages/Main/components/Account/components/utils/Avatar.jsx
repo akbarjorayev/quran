@@ -20,7 +20,6 @@ function Avatar({ style }) {
 
     async function loadImg() {
       setName(await getName())
-      console.log('get from db')
     }
     loadImg()
   }, [])
