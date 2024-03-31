@@ -13,12 +13,11 @@ function getData(form) {
 
   const chosen = checkChooseArea(form)
 
-  if (chosen) return { inputs: values, chosen, ok: true }
-  return { inputs: values, ok: true }
+  return { inputs: values, chosen, ok: true }
 }
 
 function checkValues(form) {
-  const inputs = form.querySelectorAll('input')
+  const inputs = form.querySelectorAll('input:not([type="file"])')
   const values = {}
 
   for (let input of inputs) {
