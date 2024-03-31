@@ -1,3 +1,5 @@
+import { loadLocal, saveLocal } from '../db/localStorage'
+
 function isValidUsername(username) {
   if (username.length < 2) {
     return { msg: 'Write more than 1 characters', ok: false }
@@ -34,4 +36,19 @@ function isValidPassword(password) {
   return { msg: 'Valid password', ok: true }
 }
 
-export { isValidUsername, isValidPassword }
+function localInitialData() {
+  const hasData = loadLocal('quran')
+
+  if (!hasData) {
+    const initialData = {
+      accounts: {
+        usernames: [],
+        active: '',
+      },
+    }
+
+    saveLocal('quran', initialData)
+  }
+}
+
+export { isValidUsername, isValidPassword, localInitialData }
