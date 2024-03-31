@@ -32,6 +32,8 @@
 
   :root {
     --error-color: #ba3737;
+    --error-color-hover: #de6363;
+    --error-color-active: #6d2525;
     --error-color-border: #dc8787;
   }
 
