@@ -63,7 +63,7 @@ async function login(data) {
   return { ok: true }
 }
 
-async function edit(username, newData) {
+async function editUser(username, newData) {
   if (!newData.ok) return { msg: 'Wrong data', ok: false }
 
   const user = {
@@ -81,4 +81,4 @@ async function getAccount(username) {
   return account
 }
 
-export { signup, login, getAccount, edit }
+export { signup, login, getAccount, editUser }
