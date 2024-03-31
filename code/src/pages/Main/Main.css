@@ -15,11 +15,6 @@
   flex: 1;
 }
 
-.main img {
-  width: 200px;
-  height: 200px;
-}
-
 :root {
   --menu-size: 70px;
 }
