@@ -5,14 +5,18 @@ import Input from '../../../../../../components/Input/Input'
 import Choose from '../../../../../../components/Choose/Choose'
 import Loading from '../../../../../../components/Loading/Loading'
 import Message from '../../../../../../components/Message/Message'
+import Avatar from '../utils/Avatar'
 
 import { loadLocal } from '../../../../../../js/db/localStorage'
-import { getAccount, edit } from '../../../../../../js/account/account'
+import { getAccount, editUser } from '../../../../../../js/account/account'
 import { getData } from '../../../../../../js/utils/form'
 import { msgData } from '../../../../../../js/utils/message'
+import { elText } from '../../../../../../js/utils/copy'
 
 function AccountData() {
   const form = useRef(null)
+  const nameRef = useRef(null)
+  const usernameRef = useRef(null)
   const [account, setAccount] = useState(false)
   const [editing, setEditing] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -25,13 +29,12 @@ function AccountData() {
   useEffect(() => {
     const username = loadLocal('quran').accounts.active
     async function loadAccount() {
-      const userAccount = await getAccount(username)
-      setAccount(userAccount)
+      setAccount(await getAccount(username))
     }
     loadAccount()
   }, [saving])
 
-  async function save() {
+  async function saveChanges() {
     setSaving(true)
 
     const formData = getData(form.current)
@@ -41,16 +44,37 @@ function AccountData() {
         () => setMessage({ ...message, show: false }),
         msgData.time * 1000
       )
+      setSaving(false)
       return
     }
 
     const username = loadLocal('quran').accounts.active
-    await edit(username, formData)
+    const editedData = await editUser(username, formData)
+
+    if (!editedData.ok) {
+      setMessage({ msg: editedData.msg, type: editedData.msgType, show: true })
+      setTimeout(
+        () => setMessage({ ...message, show: false }),
+        msgData.time * 1000
+      )
+      setSaving(false)
+      return
+    }
 
     setSaving(false)
     setEditing(false)
 
     setMessage({ msg: 'Changes saved', type: 'success', show: true })
+    setTimeout(
+      () => setMessage({ ...message, show: false }),
+      msgData.time * 1000
+    )
+  }
+
+  function copy(elRef) {
+    const msg = elText(elRef)
+
+    setMessage({ ...msg, type: 'success', show: true })
     setTimeout(
       () => setMessage({ ...message, show: false }),
       msgData.time * 1000
@@ -66,23 +90,36 @@ function AccountData() {
           {message.msg}
         </Message>
         <div className="df_jc_sb df_ai_ce">
-          <b>Editing</b>
-          <div className="list_x">
-            <Button onClick={save}>
-              <span className="material-symbols-outlined fz_normal">done</span>
-            </Button>
-            <Button onClick={() => setEditing(false)}>
-              <span className="material-symbols-outlined fz_normal">close</span>
-            </Button>
+          <b>Edit</b>
+          <Button className="list_x_small" onClick={() => setEditing(false)}>
+            <span className="material-symbols-outlined fz_normal">close</span>
+            <span>Close</span>
+          </Button>
+        </div>
+        <div className="list_x df_ai_ce">
+          <Avatar style={{ height: '70px' }}></Avatar>
+          <div className="list_y w_100 df_ai_ce_child">
+            <div className="list_x">
+              <span className="material-symbols-outlined">person</span>
+              <Input
+                type="text"
+                label="Name"
+                value={account?.name}
+                maxLength="20"
+                autoFocus
+              />
+            </div>
+            <div className="list_x">
+              <span className="material-symbols-outlined">alternate_email</span>
+              <Input
+                type="text"
+                label="Username"
+                value={account?.username}
+                maxLength="20"
+              />
+            </div>
           </div>
         </div>
-        <Input
-          type="text"
-          label="Name"
-          maxLength="20"
-          value={account?.name}
-          autoFocus
-        />
         <Choose axe="x" label="Gender" iOption={account?.gender}>
           <div className="list_x df_ai_ce" option="male">
             <span className="material-symbols-outlined fz_normal gender_male">
@@ -97,39 +134,51 @@ function AccountData() {
             <div>Female</div>
           </div>
         </Choose>
-        {saving && <Loading size="140px">Saving</Loading>}
+        <Button
+          className="df_f_ce list_x_small"
+          colorful="true"
+          onClick={saveChanges}
+        >
+          <span className="material-symbols-outlined fz_big">check_circle</span>
+          <span>Save changes</span>
+        </Button>
+        {saving && <Loading size="210px">Saving</Loading>}
       </div>
     )
   }
 
   return (
     <>
-      <div className="con_bd_cl loading_area df_ai_ce df_jc_sb">
+      <div className="con_bd_cl loading_area df_ai_st df_ai_ce_child df_jc_sb">
         <Message show={message.show} type={message.type}>
           {message.msg}
         </Message>
-        <div className="list_x df_ai_ce">
-          <b className="name df_ai_ce">
-            {account?.gender === 'male' && (
-              <span className="material-symbols-outlined fz_big gender_male">
-                male
+        <div className="list_x">
+          <Avatar style={{ width: '50px' }}></Avatar>
+          <div className="list_y">
+            <div className="w_100">
+              <span
+                className={`material-symbols-outlined fz_big gender_${account?.gender}`}
+              >
+                {account?.gender}
               </span>
-            )}
-            {account?.gender === 'female' && (
-              <span className="material-symbols-outlined fz_big gender_female">
-                female
-              </span>
-            )}
-            {account?.name}
-          </b>
-          <div className="username txt_small txt_opa fz_small">
-            @{account?.username}
+              <b ref={nameRef} className="name" onClick={() => copy(nameRef)}>
+                {account?.name}
+              </b>
+            </div>
+            <div
+              className="username txt_small txt_opa fz_small w_100"
+              onClick={() => copy(usernameRef)}
+            >
+              @<span ref={usernameRef}>{account?.username}</span>
+            </div>
           </div>
         </div>
-        <Button onClick={() => setEditing(true)}>
+        <Button className="list_x_small" onClick={() => setEditing(true)}>
           <span className="material-symbols-outlined fz_normal">edit</span>
+          <span>Edit</span>
         </Button>
-        {!account && <Loading size="40px" />}
+        {!account && <Loading size="60px" />}
       </div>
     </>
   )

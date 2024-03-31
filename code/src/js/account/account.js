@@ -1,4 +1,4 @@
-import { save, load, edit as editDB } from '../db/db'
+import { save, load, edit as editDB, deleteData } from '../db/db'
 import { loadLocal, saveLocal } from '../db/localStorage'
 
 async function signup(data) {
@@ -54,12 +54,10 @@ async function login(data) {
     return { msg: 'Wrong password', msgType: 'warning', ok: false }
   }
 
-  saveLocal('quran', {
-    accounts: {
-      ...localData.accounts,
-      usernames: [...localData.accounts.usernames, username],
-    },
-  })
+  localData.accounts.usernames = [...localData.accounts.usernames, username]
+  if (!localData.accounts.active) localData.accounts.active = username
+
+  saveLocal('quran', localData)
   return { ok: true }
 }
 
@@ -70,8 +68,34 @@ async function editUser(username, newData) {
     ...newData.inputs,
     ...newData.chosen,
   }
+  const localUsername = loadLocal('quran').accounts.active
 
-  await editDB(`accounts/${username}`, user)
+  if (localUsername === user.username) {
+    await editDB(`accounts/${username}`, user)
+    return { msg: `User's data has changed`, msgType: 'success', ok: true }
+  }
+
+  const notFreeUsername = await load(`accounts/${user.username}`)
+  if (notFreeUsername) {
+    return { msg: 'Username has used', msgType: 'warning', ok: false }
+  }
+
+  const localData = loadLocal('quran')
+  const usernames = localData.accounts.usernames
+
+  for (let i = 0; i < usernames.length; i++) {
+    if (usernames[i] === localUsername) {
+      usernames[i] = user.username
+      localData.accounts.active = user.username
+      break
+    }
+  }
+  saveLocal('quran', localData)
+
+  await save(`accounts/${user.username}`, user)
+  await deleteData(`accounts/${localUsername}`)
+
+  return { msg: `User's data has changed`, msgType: 'success', ok: true }
 }
 
 async function getAccount(username) {
