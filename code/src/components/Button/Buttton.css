@@ -4,24 +4,40 @@ button {
   border: none;
   padding: var(--pd-small-very) var(--pd-small);
   border-radius: var(--bd-ra-small);
-}
 
-button:hover {
-  background-color: var(--grey-hover);
-}
+  &:hover {
+    background-color: var(--grey-hover);
+  }
 
-button:active {
-  background-color: var(--grey-active);
+  &:active {
+    background-color: var(--grey-active);
+  }
 }
 
 button[colorful='true'] {
   background-color: var(--main-color);
+
+  &:hover {
+    background-color: var(--main-color-hover);
+  }
+
+  &:active {
+    background-color: var(--main-color-active);
+  }
 }
 
-button[colorful='true']:hover {
-  background-color: var(--main-color-hover);
-}
+button.error {
+  background: none;
+  background-color: var(--error-color);
+  border: none;
+  padding: var(--pd-small-very) var(--pd-small);
+  border-radius: var(--bd-ra-small);
 
-button[colorful='true']:active {
-  background-color: var(--main-color-active);
+  &:hover {
+    background-color: var(--error-color-hover);
+  }
+
+  &:active {
+    background-color: var(--error-color-active);
+  }
 }
