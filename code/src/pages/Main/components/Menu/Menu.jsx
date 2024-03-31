@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import Button from '../../../../components/Button/Button'
+import Avatar from '../Account/components/utils/Avatar'
 
 import './Menu.css'
 
@@ -35,11 +36,7 @@ function Menu({ setActievPage, useSearch }) {
         </div>
         <div className="list_y df_ai_ce">
           <Button active="account" onClick={activeClick}>
-            <img
-              src="https://i.stack.imgur.com/34AD2.jpg"
-              loading="lazy"
-              alt=""
-            />
+            <Avatar style={{ width: '100%' }}></Avatar>
           </Button>
           <Button active="settings" onClick={activeClick}>
             <span className="material-symbols-outlined">settings</span>
