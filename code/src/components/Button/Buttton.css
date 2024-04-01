@@ -14,6 +14,10 @@ button {
   }
 }
 
+button.medium {
+  padding: var(--pd-small) var(--pd);
+}
+
 button[colorful='true'] {
   background-color: var(--main-color);
 
