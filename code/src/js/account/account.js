@@ -105,4 +105,11 @@ async function getAccount(username) {
   return account
 }
 
-export { signup, login, getAccount, editUser }
+function changeAccount(username) {
+  const localData = loadLocal('quran')
+  if (localData.accounts.usernames.includes(username))
+    localData.accounts.active = username
+
+  saveLocal('quran', localData)
+}
+export { signup, login, getAccount, editUser, changeAccount }
