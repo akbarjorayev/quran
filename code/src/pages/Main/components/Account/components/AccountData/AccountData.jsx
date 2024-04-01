@@ -178,7 +178,7 @@ function AccountData() {
           <span className="material-symbols-outlined fz_normal">edit</span>
           <span>Edit</span>
         </Button>
-        {!account && <Loading size="60px" />}
+        {!account && <Loading size="60px">Main account</Loading>}
       </div>
     </>
   )
