@@ -12,21 +12,24 @@ async function getName() {
   return name[0]
 }
 
-function Avatar({ style }) {
+function Avatar({ style, letter }) {
   const [name, setName] = useState(() => '')
 
   useEffect(() => {
-    if (name) setName(name)
+    if (letter) {
+      setName(letter)
+      return
+    }
 
-    async function loadImg() {
+    async function loadData() {
       setName(await getName())
     }
-    loadImg()
+    loadData()
   }, [])
 
   return (
     <div className="avatar df_f_ce con_bd_cl" style={style}>
-      <span>{name}</span>
+      <span>{name.toUpperCase()}</span>
     </div>
   )
 }
