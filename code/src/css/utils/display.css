@@ -22,3 +22,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.df_jc_end {
+  display: flex;
+  justify-content: flex-end;
+}
