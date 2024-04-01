@@ -2,8 +2,8 @@
   width: 100%;
 }
 
-.w_ch_100 > * {
-  width: 100%;
+.w_max {
+  width: max-content;
 }
 
 .h_100 {
