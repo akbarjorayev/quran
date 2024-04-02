@@ -1,5 +1,6 @@
 import { save, load, edit as editDB, deleteData } from '../db/db'
 import { loadLocal, saveLocal } from '../db/localStorage'
+import { getLocalInitialData } from '../utils/checkers'
 
 async function signup(data) {
   if (!data) return { msg: 'Wrong data', ok: false }
@@ -61,6 +62,26 @@ async function login(data) {
   return { ok: true }
 }
 
+function logout(username) {
+  const localData = loadLocal('quran')
+
+  const usernames = localData.accounts.usernames.filter(
+    (item) => item !== username
+  )
+
+  if (usernames.length !== 0) {
+    localData.accounts.usernames = usernames
+    localData.accounts.active = usernames[0]
+
+    saveLocal('quran', localData)
+    window.location.reload()
+    return
+  }
+
+  saveLocal('quran', getLocalInitialData())
+  window.location.href = '/account/login'
+}
+
 async function editUser(username, newData) {
   if (!newData.ok) return { msg: 'Wrong data', ok: false }
 
@@ -120,4 +141,4 @@ function changeAccount(username) {
 
   saveLocal('quran', localData)
 }
-export { signup, login, getAccount, editUser, changeAccount }
+export { signup, login, logout, getAccount, editUser, changeAccount }

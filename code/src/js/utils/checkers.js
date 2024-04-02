@@ -40,15 +40,24 @@ function localInitialData() {
   const hasData = loadLocal('quran')
 
   if (!hasData) {
-    const initialData = {
-      accounts: {
-        usernames: [],
-        active: '',
-      },
-    }
-
+    const initialData = getLocalInitialData()
     saveLocal('quran', initialData)
   }
 }
 
-export { isValidUsername, isValidPassword, localInitialData }
+function getLocalInitialData() {
+  const initialData = {
+    accounts: {
+      usernames: [],
+      active: '',
+    },
+  }
+  return initialData
+}
+
+export {
+  isValidUsername,
+  isValidPassword,
+  localInitialData,
+  getLocalInitialData,
+}

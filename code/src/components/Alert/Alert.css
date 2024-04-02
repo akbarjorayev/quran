@@ -26,6 +26,14 @@
   text-decoration: balance;
 }
 
+.alert_con .title {
+  font-size: 1.1em;
+}
+
+.alert_con_top button {
+  background-color: transparent;
+}
+
 :root {
   --alert-con-min-size: 200px;
   --alert-con-max-size: 400px;

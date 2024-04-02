@@ -8,18 +8,26 @@ import Message from '../../../../../../components/Message/Message'
 import Avatar from '../utils/Avatar'
 
 import { loadLocal } from '../../../../../../js/db/localStorage'
-import { getAccount, editUser } from '../../../../../../js/account/account'
+import {
+  getAccount,
+  editUser,
+  logout as dbLogout,
+} from '../../../../../../js/account/account'
 import { getData } from '../../../../../../js/utils/form'
 import { msgData } from '../../../../../../js/utils/message'
 import { elText } from '../../../../../../js/utils/copy'
+import Alert from '../../../../../../components/Alert/Alert'
+import { load } from '../../../../../../js/db/db'
 
 function AccountData() {
   const form = useRef(null)
   const nameRef = useRef(null)
   const usernameRef = useRef(null)
+  const logoutRef = useRef(null)
   const [account, setAccount] = useState(false)
   const [editing, setEditing] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [logout, setLogout] = useState(false)
   const [message, setMessage] = useState({
     text: '',
     type: 'error',
@@ -79,6 +87,25 @@ function AccountData() {
       () => setMessage({ ...message, show: false }),
       msgData.time * 1000
     )
+  }
+
+  async function logoutAccount() {
+    const username = loadLocal('quran').accounts.active
+    const dbPassword = await load(`accounts/${username}/password`)
+    const password = logoutRef.current?.value
+
+    const correct = dbPassword === password
+
+    if (!correct) {
+      setMessage({ msg: 'Password is not matching', type: 'error', show: true })
+      setTimeout(
+        () => setMessage({ ...message, show: false }),
+        msgData.time * 1000
+      )
+      return
+    }
+
+    dbLogout(username)
   }
 
   if (account === null) return null
@@ -167,19 +194,51 @@ function AccountData() {
               </b>
             </div>
             <div
-              className="username txt_small txt_opa fz_small w_100"
+              className="username txt_opa fz_small w_100"
               onClick={() => copy(usernameRef)}
             >
               @<span ref={usernameRef}>{account?.username}</span>
             </div>
           </div>
         </div>
-        <Button className="list_x_small" onClick={() => setEditing(true)}>
-          <span className="material-symbols-outlined fz_normal">edit</span>
-          <span>Edit</span>
-        </Button>
+        <div className="list_x">
+          <Button
+            className="list_x_small error"
+            onClick={() => setLogout(true)}
+          >
+            <span className="material-symbols-outlined fz_normal">logout</span>
+            <span>Log out</span>
+          </Button>
+          <Button className="list_x_small" onClick={() => setEditing(true)}>
+            <span className="material-symbols-outlined fz_normal">edit</span>
+            <span>Edit</span>
+          </Button>
+        </div>
         {!account && <Loading size="60px">Main account</Loading>}
       </div>
+      {logout && (
+        <Alert title="Log out" onHide={() => setLogout(false)}>
+          <Input
+            ref={logoutRef}
+            type="password"
+            label="Password"
+            maxLength="20"
+            autoFocus
+            areaProps={{ className: 'con_bg_dr' }}
+          />
+          <div>
+            You should <b>reload</b> the page to apply changes.
+          </div>
+          <div className="df_jc_end">
+            <Button className="list_x error" onClick={logoutAccount}>
+              <span className="material-symbols-outlined fz_normal">
+                logout
+              </span>
+              <span>Log out</span>
+            </Button>
+          </div>
+        </Alert>
+      )}
     </>
   )
 }

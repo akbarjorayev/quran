@@ -22,7 +22,7 @@ const pages = {
 }
 
 function Main() {
-  const [activePage, setActievPage] = useState('home')
+  const [activePage, setActievPage] = useState('account')
   const [title, setTitle] = useTitle(activePage)
 
   useEffect(() => {
