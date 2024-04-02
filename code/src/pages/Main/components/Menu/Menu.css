@@ -29,8 +29,6 @@
   border-color: var(--main-color-light);
 }
 
-.menu_area img {
-  width: 100%;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
+.menu_area button * {
+  pointer-events: none;
 }

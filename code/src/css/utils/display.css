@@ -13,7 +13,22 @@
   align-items: center;
 }
 
+.df_ai_ce_child * {
+  display: flex;
+  align-items: center;
+}
+
+.df_ai_st {
+  display: flex;
+  align-items: start;
+}
+
 .df_jc_ce {
+  display: flex;
+  justify-content: center;
+}
+
+.df_jc_ce_child * {
   display: flex;
   justify-content: center;
 }
@@ -26,4 +41,8 @@
 .df_jc_end {
   display: flex;
   justify-content: flex-end;
+}
+
+.d_n {
+  display: none;
 }

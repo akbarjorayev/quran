@@ -2,7 +2,7 @@ import './Loading.css'
 
 function Loading({ children, size }) {
   return (
-    <div className="loading_con df_f_ce list_y">
+    <div className="loading_con con_bg_df df_f_ce list_y">
       <div className="loading_spinners" style={{ '--loading-size': size }}>
         <div
           className="loading_spinner"
@@ -21,7 +21,7 @@ function Loading({ children, size }) {
           }}
         ></div>
       </div>
-      <div className="loading_text">{children}</div>
+      {children && <div className="loading_text">{children}</div>}
     </div>
   )
 }

@@ -10,11 +10,11 @@
 }
 
 .list_y_big > *:not(:last-child) {
-  margin-bottom: var(--mar);
+  margin-bottom: var(--mar-big);
 }
 
 .list_y_small > *:not(:last-child) {
-  margin-bottom: var(--mar-small);
+  margin-bottom: var(--mar-small-very);
 }
 
 .list_x,
@@ -28,9 +28,9 @@
 }
 
 .list_x_big > *:not(:last-child) {
-  margin-right: var(--mar);
+  margin-right: var(--mar-big);
 }
 
 .list_x_small > *:not(:last-child) {
-  margin-right: var(--mar-small);
+  margin-right: var(--mar-small-very);
 }

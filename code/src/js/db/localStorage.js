@@ -3,7 +3,8 @@ function saveLocal(name, data) {
 }
 
 function loadLocal(name) {
-  return JSON.parse(localStorage.getItem(name))
+  if (localStorage.getItem(name)) return JSON.parse(localStorage.getItem(name))
+  return false
 }
 
 function removeLocal(name) {

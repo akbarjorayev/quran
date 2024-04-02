@@ -1,5 +1,6 @@
-import { save, load } from '../db/db'
+import { save, load, edit as editDB, deleteData } from '../db/db'
 import { loadLocal, saveLocal } from '../db/localStorage'
+import { getLocalInitialData } from '../utils/checkers'
 
 async function signup(data) {
   if (!data) return { msg: 'Wrong data', ok: false }
@@ -24,6 +25,11 @@ async function signup(data) {
     },
   })
   return { ok: true }
+}
+
+async function deleteAccount(username) {
+  await deleteData(`accounts/${username}`)
+  logout(username)
 }
 
 async function login(data) {
@@ -54,13 +60,101 @@ async function login(data) {
     return { msg: 'Wrong password', msgType: 'warning', ok: false }
   }
 
-  saveLocal('quran', {
-    accounts: {
-      ...localData.accounts,
-      usernames: [...localData.accounts.usernames, username],
-    },
-  })
+  localData.accounts.usernames = [...localData.accounts.usernames, username]
+  if (!localData.accounts.active) localData.accounts.active = username
+
+  saveLocal('quran', localData)
   return { ok: true }
 }
 
-export { signup, login }
+function logout(username) {
+  const localData = loadLocal('quran')
+
+  const usernames = localData.accounts.usernames.filter(
+    (item) => item !== username
+  )
+
+  if (usernames.length !== 0) {
+    localData.accounts.usernames = usernames
+    localData.accounts.active = usernames[0]
+
+    saveLocal('quran', localData)
+    window.location.reload()
+    return false
+  }
+
+  saveLocal('quran', getLocalInitialData())
+  window.location.href = '/account/login'
+  return true
+}
+
+async function editUser(username, newData) {
+  if (!newData.ok) return { msg: 'Wrong data', ok: false }
+
+  const user = {
+    ...newData.inputs,
+    ...newData.chosen,
+  }
+  const localUsername = loadLocal('quran').accounts.active
+
+  if (localUsername === user.username) {
+    await editDB(`accounts/${username}`, user)
+    return { msg: `User's data has changed`, msgType: 'success', ok: true }
+  }
+
+  const notFreeUsername = await load(`accounts/${user.username}`)
+  if (notFreeUsername) {
+    return { msg: 'Username has used', msgType: 'warning', ok: false }
+  }
+
+  const localData = loadLocal('quran')
+  const usernames = localData.accounts.usernames
+
+  for (let i = 0; i < usernames.length; i++) {
+    if (usernames[i] === localUsername) {
+      usernames[i] = user.username
+      localData.accounts.active = user.username
+      break
+    }
+  }
+  saveLocal('quran', localData)
+
+  const dbUser = await load(`accounts/${localUsername}`)
+  const keys = Object.keys(dbUser)
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    if (!user[key]) user[key] = dbUser[key]
+  }
+
+  await save(`accounts/${user.username}`, user)
+  await deleteData(`accounts/${localUsername}`)
+
+  return { msg: `User's data has changed`, msgType: 'success', ok: true }
+}
+
+async function getAccount(username) {
+  const account = await load(`accounts/${username}`)
+  if (!account) return null
+
+  return account
+}
+
+function changeAccount(username) {
+  const localData = loadLocal('quran')
+  if (localData.accounts.usernames.includes(username))
+    localData.accounts.active = username
+
+  saveLocal('quran', localData)
+  window.location.reload()
+}
+
+export {
+  signup,
+  deleteAccount,
+  login,
+  logout,
+  getAccount,
+  editUser,
+  changeAccount,
+}

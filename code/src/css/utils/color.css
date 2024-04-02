@@ -22,6 +22,13 @@
   }
 
   :root {
+    --red-color: #ba3737;
+    --red-color-bg: #961919;
+    --red-color-hover: #bb2d2d;
+    --red-color-active: #681414;
+  }
+
+  :root {
     --main-color: #3434ac;
     --main-color-dark: #161652;
     --main-color-light: #9292ff;
@@ -32,6 +39,9 @@
 
   :root {
     --error-color: #ba3737;
+    --error-color-bg: #681212;
+    --error-color-hover: #de6363;
+    --error-color-active: #6d2525;
     --error-color-border: #dc8787;
   }
 

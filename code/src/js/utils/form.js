@@ -13,12 +13,11 @@ function getData(form) {
 
   const chosen = checkChooseArea(form)
 
-  if (chosen) return { inputs: values, chosen, ok: true }
-  return { inputs: values, ok: true }
+  return { inputs: values, chosen, ok: true }
 }
 
 function checkValues(form) {
-  const inputs = form.querySelectorAll('input')
+  const inputs = form.querySelectorAll('input:not([type="file"])')
   const values = {}
 
   for (let input of inputs) {
@@ -53,12 +52,12 @@ function checkChooseArea(form) {
   if (!chooseArea) return false
 
   const chosenI = +chooseArea.querySelector('.chosen').getAttribute('index')
-  const option = form.querySelectorAll('.option')[chosenI]
+  const option = form.querySelectorAll('[option]')[chosenI]
 
   const label = chooseArea.querySelector('label').textContent.toLowerCase()
 
   let res = {}
-  res[label] = option.textContent.toLowerCase()
+  res[label] = option.getAttribute('option').toLowerCase()
 
   return res
 }
