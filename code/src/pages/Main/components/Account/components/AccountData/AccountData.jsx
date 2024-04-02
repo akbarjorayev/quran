@@ -215,7 +215,7 @@ function AccountData() {
           {saving && <Loading size="210px">Saving</Loading>}
         </div>
         {deleting && (
-          <Alert title="Delete" onHide={() => setDeleting(false)}>
+          <Alert title="Delete account" onHide={() => setDeleting(false)}>
             <Input
               ref={deleteRef}
               type="password"
