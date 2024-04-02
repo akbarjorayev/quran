@@ -134,74 +134,86 @@ function AccountData() {
 
   if (editing) {
     return (
-      <div className="con_bd_cl loading_area list_y" ref={form}>
-        <Message show={message.show} type={message.type}>
-          {message.msg}
-        </Message>
-        <div className="df_jc_sb df_ai_ce">
-          <b>Edit</b>
-          <div className="list_x">
-            <Button
-              className="list_x_small error"
-              onClick={() => setDeleting(true)}
-            >
-              <span className="material-symbols-outlined fz_normal">
-                delete
+      <div className='df_f_ce'>
+        <div className="con_bd_cl loading_area list_y" ref={form} style={{width: '500px'}}>
+          <Message show={message.show} type={message.type}>
+            {message.msg}
+          </Message>
+          <div className="df_jc_sb df_ai_ce">
+            <b>Edit</b>
+            <div className="list_x">
+              <Button
+                className="list_x_small red"
+                onClick={() => setDeleting(true)}
+              >
+                <span className="material-symbols-outlined fz_normal">
+                  delete
+                </span>
+                <span>Delete</span>
+              </Button>
+              <Button
+                className="list_x_small"
+                onClick={() => setEditing(false)}
+              >
+                <span className="material-symbols-outlined fz_normal">
+                  close
+                </span>
+                <span>Close</span>
+              </Button>
+            </div>
+          </div>
+          <div className="list_x df_ai_ce">
+            <Avatar style={{ height: '70px', fontSize: '35px' }}></Avatar>
+            <div className="list_y w_100 df_ai_ce_child">
+              <div className="list_x">
+                <span className="material-symbols-outlined">person</span>
+                <Input
+                  type="text"
+                  label="Name"
+                  value={account?.name}
+                  maxLength="20"
+                  autoFocus
+                />
+              </div>
+              <div className="list_x">
+                <span className="material-symbols-outlined">
+                  alternate_email
+                </span>
+                <Input
+                  type="text"
+                  label="Username"
+                  value={account?.username}
+                  maxLength="20"
+                />
+              </div>
+            </div>
+          </div>
+          <Choose axe="x" label="Gender" iOption={account?.gender}>
+            <div className="list_x df_ai_ce" option="male">
+              <span className="material-symbols-outlined fz_normal gender_male">
+                male
               </span>
-              <span>Delete</span>
-            </Button>
-            <Button className="list_x_small" onClick={() => setEditing(false)}>
-              <span className="material-symbols-outlined fz_normal">close</span>
-              <span>Close</span>
-            </Button>
-          </div>
-        </div>
-        <div className="list_x df_ai_ce">
-          <Avatar style={{ height: '70px' }}></Avatar>
-          <div className="list_y w_100 df_ai_ce_child">
-            <div className="list_x">
-              <span className="material-symbols-outlined">person</span>
-              <Input
-                type="text"
-                label="Name"
-                value={account?.name}
-                maxLength="20"
-                autoFocus
-              />
+              <div>Male</div>
             </div>
-            <div className="list_x">
-              <span className="material-symbols-outlined">alternate_email</span>
-              <Input
-                type="text"
-                label="Username"
-                value={account?.username}
-                maxLength="20"
-              />
+            <div className="list_x df_ai_ce" option="female">
+              <span className="material-symbols-outlined fz_normal gender_female">
+                female
+              </span>
+              <div>Female</div>
             </div>
-          </div>
+          </Choose>
+          <Button
+            className="df_f_ce list_x medium"
+            colorful="true"
+            onClick={saveChanges}
+          >
+            <span className="material-symbols-outlined fz_big">
+              check_circle
+            </span>
+            <span>Save changes</span>
+          </Button>
+          {saving && <Loading size="210px">Saving</Loading>}
         </div>
-        <Choose axe="x" label="Gender" iOption={account?.gender}>
-          <div className="list_x df_ai_ce" option="male">
-            <span className="material-symbols-outlined fz_normal gender_male">
-              male
-            </span>
-            <div>Male</div>
-          </div>
-          <div className="list_x df_ai_ce" option="female">
-            <span className="material-symbols-outlined fz_normal gender_female">
-              female
-            </span>
-            <div>Female</div>
-          </div>
-        </Choose>
-        <Button
-          className="df_f_ce list_x_small"
-          colorful="true"
-          onClick={saveChanges}
-        >
-          <span className="material-symbols-outlined fz_big">check_circle</span>
-          <span>Save changes</span>
-        </Button>
         {deleting && (
           <Alert title="Delete" onHide={() => setDeleting(false)}>
             <Input
@@ -216,7 +228,7 @@ function AccountData() {
               You should <b>reload</b> the page to apply changes.
             </div>
             <div className="df_jc_end">
-              <Button className="list_x error" onClick={deleteAccount}>
+              <Button className="list_x red" onClick={deleteAccount}>
                 <span className="material-symbols-outlined fz_normal">
                   delete
                 </span>
@@ -225,52 +237,65 @@ function AccountData() {
             </div>
           </Alert>
         )}
-        {saving && <Loading size="210px">Saving</Loading>}
       </div>
     )
   }
 
   return (
     <>
-      <div className="con_bd_cl loading_area df_ai_st df_ai_ce_child df_jc_sb">
-        <Message show={message.show} type={message.type}>
-          {message.msg}
-        </Message>
-        <div className="list_x">
-          <Avatar style={{ width: '50px' }}></Avatar>
-          <div className="list_y">
-            <div className="w_100">
-              <span
-                className={`material-symbols-outlined fz_big gender_${account?.gender}`}
+      <div className="df_ai_ce list_y">
+        <div className="w_max loading_area df_jc_sb list_y bd_ra">
+          <Message show={message.show} type={message.type}>
+            {message.msg}
+          </Message>
+          <div className="list_y df_f_ce">
+            <Avatar style={{ width: '80px', fontSize: '40px' }}></Avatar>
+            <div className="list_y df_jc_ce_child">
+              <div className="fz_big">
+                <b ref={nameRef} className="name" onClick={() => copy(nameRef)}>
+                  {account?.name}
+                </b>
+              </div>
+              <div
+                className="txt_opa fz_small w_100"
+                onClick={() => copy(usernameRef)}
               >
-                {account?.gender}
-              </span>
-              <b ref={nameRef} className="name" onClick={() => copy(nameRef)}>
-                {account?.name}
-              </b>
-            </div>
-            <div
-              className="username txt_opa fz_small w_100"
-              onClick={() => copy(usernameRef)}
-            >
-              @<span ref={usernameRef}>{account?.username}</span>
+                @<span ref={usernameRef}>{account?.username}</span>
+              </div>
             </div>
           </div>
+          {!account && <Loading size="120px">Main account</Loading>}
         </div>
-        <div className="list_x">
-          <Button
-            className="list_x_small error"
-            onClick={() => setLogingout(true)}
-          >
-            <span className="material-symbols-outlined fz_normal">logout</span>
-            <span>Log out</span>
-          </Button>
-          <Button className="list_x_small" onClick={() => setEditing(true)}>
-            <span className="material-symbols-outlined fz_normal">edit</span>
-            <span>Edit</span>
-          </Button>
-        </div>
-        {!account && <Loading size="60px">Main account</Loading>}
+        {account && (
+          <div className="list_y df_jc_ce df_jc_ce_child">
+            <Button
+              className="list_x_small medium"
+              onClick={() => setEditing(true)}
+            >
+              <span className="material-symbols-outlined fz_normal">edit</span>
+              <span>Edit</span>
+            </Button>
+            <Button
+              className="list_x_small medium red"
+              onClick={() => setLogingout(true)}
+            >
+              <span className="material-symbols-outlined fz_normal">
+                logout
+              </span>
+              <span>Log out</span>
+            </Button>
+            <Button
+              className="list_x_small medium"
+              colorful="true"
+              onClick={() => (window.location.href = 'account/login')}
+            >
+              <span className="material-symbols-outlined fz_normal">
+                add_circle
+              </span>
+              <span>Add account</span>
+            </Button>
+          </div>
+        )}
       </div>
       {logingout && (
         <Alert title="Log out" onHide={() => setLogingout(false)}>
@@ -286,7 +311,7 @@ function AccountData() {
             You should <b>reload</b> the page to apply changes.
           </div>
           <div className="df_jc_end">
-            <Button className="list_x error" onClick={logoutAccount}>
+            <Button className="list_x red" onClick={logoutAccount}>
               <span className="material-symbols-outlined fz_normal">
                 logout
               </span>

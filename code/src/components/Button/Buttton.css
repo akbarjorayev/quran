@@ -31,12 +31,8 @@ button[colorful='true'] {
 }
 
 button.error {
-  background: none;
   background-color: var(--error-color-bg);
   color: var(--error-color);
-  border: none;
-  padding: var(--pd-small-very) var(--pd-small);
-  border-radius: var(--bd-ra-small);
 
   &:hover {
     background-color: var(--error-color-hover);
@@ -44,5 +40,17 @@ button.error {
 
   &:active {
     background-color: var(--error-color-active);
+  }
+}
+
+button.red {
+  background-color: var(--red-color-bg);
+
+  &:hover {
+    background-color: var(--red-color-hover);
+  }
+
+  &:active {
+    background-color: var(--red-color-active);
   }
 }

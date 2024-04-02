@@ -40,7 +40,7 @@ export default function AccountList() {
     <>
       {accounts.length === 0 && null}
       {accounts.length > 0 && (
-        <>
+        <div className="df_f_ce">
           {accounts.map((account, i) => (
             <div
               key={i}
@@ -49,6 +49,7 @@ export default function AccountList() {
               onClick={() =>
                 setSwitchAcc({ switch: true, account: accounts[i] })
               }
+              style={{ width: '500px' }}
             >
               <div className="list_x fz_small">
                 <Avatar
@@ -94,7 +95,7 @@ export default function AccountList() {
               </div>
             </Alert>
           )}
-        </>
+        </div>
       )}
       {loading && (
         <div className="con_bd_cl loading_area">

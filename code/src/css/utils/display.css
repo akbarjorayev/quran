@@ -28,6 +28,11 @@
   justify-content: center;
 }
 
+.df_jc_ce_child * {
+  display: flex;
+  justify-content: center;
+}
+
 .df_jc_sb {
   display: flex;
   justify-content: space-between;

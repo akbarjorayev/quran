@@ -18,7 +18,7 @@ export default function Alert({ children, title, onHide: handeHide }) {
       <div className="alert_con list_y">
         <div className="alert_con_top df_ai_ce df_jc_sb list_x">
           <div className="title">{title}</div>
-          <Button className="error" onClick={hide}>
+          <Button className="red" onClick={hide}>
             <span className="material-symbols-outlined fz_normal">close</span>
           </Button>
         </div>
