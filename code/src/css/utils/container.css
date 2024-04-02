@@ -30,9 +30,13 @@
 }
 
 .con_bg_dr {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-dark) !important;
+}
+
+.con_bd_df {
+  border: 1px solid var(--grey-border) !important;
 }
 
 .con_bd_cl {
-  border: 1px solid var(--main-color-border);
+  border: 1px solid var(--main-color-border) !important;
 }

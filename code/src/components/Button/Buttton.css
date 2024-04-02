@@ -32,7 +32,8 @@ button[colorful='true'] {
 
 button.error {
   background: none;
-  background-color: var(--error-color);
+  background-color: var(--error-color-bg);
+  color: var(--error-color);
   border: none;
   padding: var(--pd-small-very) var(--pd-small);
   border-radius: var(--bd-ra-small);
