@@ -15,12 +15,12 @@ import './Main.css'
 const pages = {
   home: <Home />,
   quran: <Quran />,
+  search: <Search />,
   settings: <Settings />,
 }
 
 function Main() {
   const [activePage, setActievPage] = useState('home')
-  const [showSearch, setShowSearch] = useState(false)
   const [title, setTitle] = useTitle(activePage)
 
   useEffect(() => {
@@ -31,17 +31,8 @@ function Main() {
   return (
     <div className="main_area">
       <div className="menu">
-        <Menu
-          setActievPage={setActievPage}
-          useSearch={() => [showSearch, setShowSearch]}
-        />
+        <Menu setActievPage={setActievPage} />
       </div>
-      {showSearch && (
-        <div className="alert_win df_jc_ce">
-          <div className="alert_bg" onClick={() => setShowSearch(false)}></div>
-          <Search />
-        </div>
-      )}
       <div className="main">{pages[activePage]}</div>
     </div>
   )
