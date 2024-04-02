@@ -92,6 +92,14 @@ async function editUser(username, newData) {
   }
   saveLocal('quran', localData)
 
+  const dbUser = await load(`accounts/${localUsername}`)
+  const keys = Object.keys(dbUser)
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    if (!user[key]) user[key] = dbUser[key]
+  }
+
   await save(`accounts/${user.username}`, user)
   await deleteData(`accounts/${localUsername}`)
 
