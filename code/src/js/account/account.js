@@ -148,6 +148,7 @@ function changeAccount(username) {
   saveLocal('quran', localData)
   window.location.reload()
 }
+
 export {
   signup,
   deleteAccount,
