@@ -27,6 +27,11 @@ async function signup(data) {
   return { ok: true }
 }
 
+async function deleteAccount(username) {
+  await deleteData(`accounts/${username}`)
+  logout(username)
+}
+
 async function login(data) {
   if (!data.ok) return { msg: 'Wrong data', ok: false }
 
@@ -75,11 +80,12 @@ function logout(username) {
 
     saveLocal('quran', localData)
     window.location.reload()
-    return
+    return false
   }
 
   saveLocal('quran', getLocalInitialData())
   window.location.href = '/account/login'
+  return true
 }
 
 async function editUser(username, newData) {
@@ -140,5 +146,14 @@ function changeAccount(username) {
     localData.accounts.active = username
 
   saveLocal('quran', localData)
+  window.location.reload()
 }
-export { signup, login, logout, getAccount, editUser, changeAccount }
+export {
+  signup,
+  deleteAccount,
+  login,
+  logout,
+  getAccount,
+  editUser,
+  changeAccount,
+}

@@ -34,10 +34,7 @@ export default function AccountList() {
 
   function changeAcc() {
     changeAccount(switchAcc.account?.username)
-    window.location.reload()
   }
-
-  console.log(accounts)
 
   return (
     <>

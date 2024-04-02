@@ -12,6 +12,7 @@ import {
   getAccount,
   editUser,
   logout as dbLogout,
+  deleteAccount as dbDeleteAccount,
 } from '../../../../../../js/account/account'
 import { getData } from '../../../../../../js/utils/form'
 import { msgData } from '../../../../../../js/utils/message'
@@ -24,10 +25,12 @@ function AccountData() {
   const nameRef = useRef(null)
   const usernameRef = useRef(null)
   const logoutRef = useRef(null)
+  const deleteRef = useRef(null)
   const [account, setAccount] = useState(false)
   const [editing, setEditing] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [logout, setLogout] = useState(false)
+  const [logingout, setLogingout] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const [message, setMessage] = useState({
     text: '',
     type: 'error',
@@ -108,6 +111,25 @@ function AccountData() {
     dbLogout(username)
   }
 
+  async function deleteAccount() {
+    const username = loadLocal('quran').accounts.active
+    const dbPassword = await load(`accounts/${username}/password`)
+    const password = deleteRef.current?.value
+
+    const correct = dbPassword === password
+
+    if (!correct) {
+      setMessage({ msg: 'Password is not matching', type: 'error', show: true })
+      setTimeout(
+        () => setMessage({ ...message, show: false }),
+        msgData.time * 1000
+      )
+      return
+    }
+
+    dbDeleteAccount(username)
+  }
+
   if (account === null) return null
 
   if (editing) {
@@ -118,10 +140,21 @@ function AccountData() {
         </Message>
         <div className="df_jc_sb df_ai_ce">
           <b>Edit</b>
-          <Button className="list_x_small" onClick={() => setEditing(false)}>
-            <span className="material-symbols-outlined fz_normal">close</span>
-            <span>Close</span>
-          </Button>
+          <div className="list_x">
+            <Button
+              className="list_x_small error"
+              onClick={() => setDeleting(true)}
+            >
+              <span className="material-symbols-outlined fz_normal">
+                delete
+              </span>
+              <span>Delete</span>
+            </Button>
+            <Button className="list_x_small" onClick={() => setEditing(false)}>
+              <span className="material-symbols-outlined fz_normal">close</span>
+              <span>Close</span>
+            </Button>
+          </div>
         </div>
         <div className="list_x df_ai_ce">
           <Avatar style={{ height: '70px' }}></Avatar>
@@ -169,6 +202,29 @@ function AccountData() {
           <span className="material-symbols-outlined fz_big">check_circle</span>
           <span>Save changes</span>
         </Button>
+        {deleting && (
+          <Alert title="Delete" onHide={() => setDeleting(false)}>
+            <Input
+              ref={deleteRef}
+              type="password"
+              label="Password"
+              maxLength="20"
+              autoFocus
+              areaProps={{ className: 'con_bg_dr' }}
+            />
+            <div>
+              You should <b>reload</b> the page to apply changes.
+            </div>
+            <div className="df_jc_end">
+              <Button className="list_x error" onClick={deleteAccount}>
+                <span className="material-symbols-outlined fz_normal">
+                  delete
+                </span>
+                <span>Delete</span>
+              </Button>
+            </div>
+          </Alert>
+        )}
         {saving && <Loading size="210px">Saving</Loading>}
       </div>
     )
@@ -204,7 +260,7 @@ function AccountData() {
         <div className="list_x">
           <Button
             className="list_x_small error"
-            onClick={() => setLogout(true)}
+            onClick={() => setLogingout(true)}
           >
             <span className="material-symbols-outlined fz_normal">logout</span>
             <span>Log out</span>
@@ -216,8 +272,8 @@ function AccountData() {
         </div>
         {!account && <Loading size="60px">Main account</Loading>}
       </div>
-      {logout && (
-        <Alert title="Log out" onHide={() => setLogout(false)}>
+      {logingout && (
+        <Alert title="Log out" onHide={() => setLogingout(false)}>
           <Input
             ref={logoutRef}
             type="password"
