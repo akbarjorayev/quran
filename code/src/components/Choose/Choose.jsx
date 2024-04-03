@@ -66,11 +66,7 @@ function Choose({ axe, label, children, iOption }) {
   }
 
   return (
-    <div className={`choose_area list_y ${axe}`}>
-      <div>
-        <label className="title fz_normal">{label}</label>
-        <div className="line_x"></div>
-      </div>
+    <div className={`choose_area list_y ${axe}`} label={label}>
       <div className="choose_con_area">
         <div className="chosen" style={chosenStyle} index={activeChildI}></div>
         <div ref={chooseArea} className={`choose_con list_${axe}`}>
