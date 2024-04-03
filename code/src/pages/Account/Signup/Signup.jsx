@@ -3,7 +3,7 @@ import Input from '../../../components/Input/Input'
 import Choose from '../../../components/Choose/Choose'
 
 import * as FORM from '../../../js/utils/form'
-import { signup } from '../../../js/account/account'
+import { getLocalAccounts, signup } from '../../../js/account/account'
 import { msgData } from '../../../js/utils/message'
 import useTitle from '../../../hooks/useTitle'
 
@@ -47,66 +47,80 @@ function Signup() {
     }
   }
 
+  const hasAccount = getLocalAccounts().length > 0
+
   return (
     <div className="h_100 df_f_ce">
       <Message show={message.show} type={message.type}>
         {message.msg}
       </Message>
-      <div className="account_area list_y">
-        <div className="df_ai_ce df_jc_sb">
-          <div className="title list_x df_ai_ce">
-            <span className="material-symbols-outlined fz_normal">
-              person_add
-            </span>
-            <span>Sign up</span>
+      <div className="list_y">
+        <div className="account_area list_y">
+          <div className="df_ai_ce df_jc_sb">
+            <div className="title list_x df_ai_ce">
+              <span className="material-symbols-outlined fz_normal">
+                person_add
+              </span>
+              <span>Sign up</span>
+            </div>
+            <Button
+              className="list_x d_ai_ce"
+              onClick={() => (window.location.href = '/account/login')}
+            >
+              <span className="material-symbols-outlined fz_normal">login</span>
+              <span>Log in</span>
+            </Button>
           </div>
-          <Button
-            className="list_x d_ai_ce"
-            onClick={() => (window.location.href = '/account/login')}
-          >
-            <span className="material-symbols-outlined fz_normal">login</span>
-            <span>Log in</span>
-          </Button>
+          <div className="line_x"></div>
+          <div className="list_y" ref={form}>
+            <div className="list_x df_ai_ce">
+              <span className="material-symbols-outlined">person</span>
+              <Input type="text" label="Name" maxLength="20" autoFocus />
+            </div>
+            <div className="list_x df_ai_ce">
+              <span className="material-symbols-outlined">alternate_email</span>
+              <Input type="text" label="Username" maxLength="20" />
+            </div>
+            <Choose axe="x" label="Gender">
+              <Button className="list_x df_ai_ce" option="male">
+                <span className="material-symbols-outlined fz_normal gender_male">
+                  male
+                </span>
+                <div>Male</div>
+              </Button>
+              <Button className="list_x df_ai_ce" option="female">
+                <span className="material-symbols-outlined fz_normal gender_female">
+                  female
+                </span>
+                <div>Female</div>
+              </Button>
+            </Choose>
+            <div className="list_x df_ai_ce">
+              <span className="material-symbols-outlined">vpn_key</span>
+              <Input type="password" label="Password" maxLength="20" />
+            </div>
+            <Button
+              className="medium list_x df_f_ce"
+              colorful="true"
+              onClick={handleSignup}
+            >
+              <span className="material-symbols-outlined fz_normal">
+                person_add
+              </span>
+              <span>Sign up</span>
+            </Button>
+          </div>
         </div>
-        <div className="line_x"></div>
-        <div className="list_y" ref={form}>
-          <div className="list_x df_ai_ce">
-            <span className="material-symbols-outlined">person</span>
-            <Input type="text" label="Name" maxLength="20" autoFocus />
-          </div>
-          <div className="list_x df_ai_ce">
-            <span className="material-symbols-outlined">alternate_email</span>
-            <Input type="text" label="Username" maxLength="20" />
-          </div>
-          <Choose axe="x" label="Gender">
-            <Button className="list_x df_ai_ce" option="male">
-              <span className="material-symbols-outlined fz_normal gender_male">
-                male
-              </span>
-              <div>Male</div>
-            </Button>
-            <Button className="list_x df_ai_ce" option="female">
-              <span className="material-symbols-outlined fz_normal gender_female">
-                female
-              </span>
-              <div>Female</div>
-            </Button>
-          </Choose>
-          <div className="list_x df_ai_ce">
-            <span className="material-symbols-outlined">vpn_key</span>
-            <Input type="password" label="Password" maxLength="20" />
-          </div>
+        {hasAccount && (
           <Button
             className="medium list_x df_f_ce"
             colorful="true"
-            onClick={handleSignup}
+            onClick={() => (window.location.href = '/')}
           >
-            <span className="material-symbols-outlined fz_normal">
-              person_add
-            </span>
-            <span>Sign up</span>
+            <span className="material-symbols-outlined fz_normal">home</span>
+            <span>Main page</span>
           </Button>
-        </div>
+        )}
       </div>
     </div>
   )
