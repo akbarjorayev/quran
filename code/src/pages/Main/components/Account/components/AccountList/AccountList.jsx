@@ -40,7 +40,7 @@ export default function AccountList() {
     <>
       {accounts.length === 0 && null}
       {accounts.length > 0 && (
-        <div className="df_f_ce">
+        <div className="df_f_ce list_y">
           {accounts.map((account, i) => (
             <div
               key={i}
