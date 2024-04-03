@@ -14,10 +14,6 @@ This repository contains the complete text of the Quran, the holy book of Islam,
 2. Make your contributions.
 3. Submit a pull request.
 
-## Get Started
-1. Explore the Quran in the `quran` directory.
-2. Join our community discussions in the Issues section.
-
 ## Contributors
 We appreciate all contributions! Thank you to our contributors.
 
