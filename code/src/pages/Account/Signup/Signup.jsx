@@ -69,18 +69,18 @@ function Signup() {
             <Input type="text" label="Username" maxLength="20" />
           </div>
           <Choose axe="x" label="Gender">
-            <div className="list_x df_ai_ce" option="male">
+            <Button className="list_x df_ai_ce" option="male">
               <span className="material-symbols-outlined fz_normal gender_male">
                 male
               </span>
               <div>Male</div>
-            </div>
-            <div className="list_x df_ai_ce" option="female">
+            </Button>
+            <Button className="list_x df_ai_ce" option="female">
               <span className="material-symbols-outlined fz_normal gender_female">
                 female
               </span>
               <div>Female</div>
-            </div>
+            </Button>
           </Choose>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">vpn_key</span>

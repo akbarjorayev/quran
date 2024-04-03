@@ -10,25 +10,12 @@
   width: 100%;
 }
 
-.menu_area button {
-  width: 80%;
+.menu_area .option,
+.menu_area .chosen {
+  border-radius: 40%;
+}
+
+.menu_area .option {
+  width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 1em;
-}
-
-.menu_area button.active {
-  background-color: var(--main-color-dark);
-}
-
-.menu_area button.active:hover {
-  background-color: var(--main-color-hover);
-}
-
-.menu_area button.active:active {
-  background-color: var(--main-color-active);
-  border-color: var(--main-color-light);
-}
-
-.menu_area button * {
-  pointer-events: none;
 }

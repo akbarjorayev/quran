@@ -54,7 +54,7 @@ function checkChooseArea(form) {
   const chosenI = +chooseArea.querySelector('.chosen').getAttribute('index')
   const option = form.querySelectorAll('[option]')[chosenI]
 
-  const label = chooseArea.querySelector('label').textContent.toLowerCase()
+  const label = chooseArea.getAttribute('label').toLowerCase()
 
   let res = {}
   res[label] = option.getAttribute('option').toLowerCase()
