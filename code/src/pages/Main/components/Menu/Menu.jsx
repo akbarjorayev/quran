@@ -3,41 +3,37 @@ import Button from '../../../../components/Button/Button'
 import Avatar from '../Account/components/utils/Avatar'
 
 import './Menu.css'
+import Choose from '../../../../components/Choose/Choose'
 
 function Menu({ setActievPage }) {
   const menu = useRef(null)
 
   function activeClick(btn) {
-    const active = btn.target.getAttribute('active')
-    setActievPage(active)
-
-    const activeBtn = menu.current?.querySelector('button[active].active')
-    if (activeBtn) activeBtn.classList.remove('active')
-    btn.target.classList.add('active')
+    const button = btn.target.querySelector('button')
+    const option = button.getAttribute('option')
+    setActievPage(option)
   }
 
   return (
     <div className="menu_area list_x">
       <div className="menu_con list_y" ref={menu}>
-        <div className="list_y df_ai_ce">
-          <Button className="active" active="home" onClick={activeClick}>
+        <Choose className="df_jc_sb" axe="y">
+          <Button className="active" option="home" onClick={activeClick}>
             <span className="material-symbols-outlined">home</span>
           </Button>
-          <Button active="search" onClick={activeClick}>
+          <Button option="search" onClick={activeClick}>
             <span className="material-symbols-outlined">search</span>
           </Button>
-          <Button active="quran" onClick={activeClick}>
+          <Button option="quran" onClick={activeClick}>
             <span className="material-symbols-outlined">menu_book</span>
           </Button>
-        </div>
-        <div className="list_y df_ai_ce">
-          <Button active="account" onClick={activeClick}>
-            <Avatar style={{ width: '100%' }}></Avatar>
+          <Button option="account" onClick={activeClick}>
+            <Avatar style={{ width: '40px', fontSize: '15px' }}></Avatar>
           </Button>
-          <Button active="settings" onClick={activeClick}>
+          <Button option="settings" onClick={activeClick}>
             <span className="material-symbols-outlined">settings</span>
           </Button>
-        </div>
+        </Choose>
       </div>
       <div className="line_y"></div>
     </div>

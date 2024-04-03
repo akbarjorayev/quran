@@ -16,8 +16,8 @@ function getTop(element) {
 function Choose({ axe, label, children, iOption }) {
   const chooseArea = useRef(null)
   const [chosenStyle, setChosenStyle] = useState(() => ({
-    width: '100%',
-    height: '100%',
+    width: '0',
+    height: '0',
     left: '0px',
     top: '0px',
   }))
@@ -34,12 +34,20 @@ function Choose({ axe, label, children, iOption }) {
     const child = chooseArea.current?.children[0]
     if (axe === 'x') {
       const width = child?.clientWidth
-      setChosenStyle((prevStyle) => ({ ...prevStyle, width: `${width}px` }))
+      setChosenStyle((prevStyle) => ({
+        ...prevStyle,
+        width: `${width}px`,
+        height: '100%',
+      }))
     }
 
     if (axe === 'y') {
       const height = child?.clientHeight
-      setChosenStyle((prevStyle) => ({ ...prevStyle, height: `${height}px` }))
+      setChosenStyle((prevStyle) => ({
+        ...prevStyle,
+        width: '100%',
+        height: `${height}px`,
+      }))
     }
   }, [chooseArea, children, axe])
 
@@ -71,14 +79,21 @@ function Choose({ axe, label, children, iOption }) {
         <div className="chosen" style={chosenStyle} index={activeChildI}></div>
         <div ref={chooseArea} className={`choose_con list_${axe}`}>
           {children.map((child, i) => {
+            const childProps = child.props
+
             const isActive = i === 0
-            if (child.props.option === iOption && !iActive && i) setIActive(i)
+            if (childProps.option === iOption && !iActive && i) setIActive(i)
+
+            function click(e) {
+              chose(e)
+              if (childProps.onClick) childProps.onClick(e)
+            }
 
             return (
               <div
                 className={`option ${isActive ? 'active' : ''}`}
                 key={i}
-                onClick={chose}
+                onClick={click}
                 index={i}
               >
                 {child}
