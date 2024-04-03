@@ -53,11 +53,21 @@ function Login() {
       </Message>
       <div className="account_area list_y">
         <div className="df_ai_ce df_jc_sb">
-          <div className="title">Log in</div>
-          <Button onClick={() => (window.location.href = '/account/signup')}>
-            Sign up
+          <div className="title list_x df_ai_ce">
+            <span className="material-symbols-outlined fz_normal">login</span>
+            <span>Log in</span>
+          </div>
+          <Button
+            className="list_x df_ai_ce"
+            onClick={() => (window.location.href = '/account/signup')}
+          >
+            <span className="material-symbols-outlined fz_normal">
+              person_add
+            </span>
+            <span>Sign up</span>
           </Button>
         </div>
+        <div className="line_x"></div>
         <div className="list_y" ref={form}>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">person</span>
@@ -67,8 +77,13 @@ function Login() {
             <span className="material-symbols-outlined">vpn_key</span>
             <Input type="password" label="Password" maxLength="20" />
           </div>
-          <Button colorful="true" onClick={handleLogin}>
-            Log in
+          <Button
+            className="medium list_x df_f_ce"
+            colorful="true"
+            onClick={handleLogin}
+          >
+            <span className="material-symbols-outlined fz_normal">login</span>
+            <span>Log in</span>
           </Button>
         </div>
       </div>

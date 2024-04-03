@@ -54,18 +54,28 @@ function Signup() {
       </Message>
       <div className="account_area list_y">
         <div className="df_ai_ce df_jc_sb">
-          <div className="title">Sign up</div>
-          <Button onClick={() => (window.location.href = '/account/login')}>
-            Log in
+          <div className="title list_x df_ai_ce">
+            <span className="material-symbols-outlined fz_normal">
+              person_add
+            </span>
+            <span>Sign up</span>
+          </div>
+          <Button
+            className="list_x d_ai_ce"
+            onClick={() => (window.location.href = '/account/login')}
+          >
+            <span className="material-symbols-outlined fz_normal">login</span>
+            <span>Log in</span>
           </Button>
         </div>
+        <div className="line_x"></div>
         <div className="list_y" ref={form}>
           <div className="list_x df_ai_ce">
             <span className="material-symbols-outlined">person</span>
             <Input type="text" label="Name" maxLength="20" autoFocus />
           </div>
           <div className="list_x df_ai_ce">
-            <span className="material-symbols-outlined">person</span>
+            <span className="material-symbols-outlined">alternate_email</span>
             <Input type="text" label="Username" maxLength="20" />
           </div>
           <Choose axe="x" label="Gender">
@@ -86,8 +96,15 @@ function Signup() {
             <span className="material-symbols-outlined">vpn_key</span>
             <Input type="password" label="Password" maxLength="20" />
           </div>
-          <Button colorful="true" onClick={handleSignup}>
-            Sign up
+          <Button
+            className="medium list_x df_f_ce"
+            colorful="true"
+            onClick={handleSignup}
+          >
+            <span className="material-symbols-outlined fz_normal">
+              person_add
+            </span>
+            <span>Sign up</span>
           </Button>
         </div>
       </div>
