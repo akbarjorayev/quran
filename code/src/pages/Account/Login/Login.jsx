@@ -1,5 +1,6 @@
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input'
+import Loading from '../../../components/Loading/Loading'
 
 import * as FORM from '../../../js/utils/form'
 import { getLocalAccounts, login } from '../../../js/account/account'
@@ -12,6 +13,7 @@ import React, { useRef, useState } from 'react'
 const Message = React.lazy(() => import('../../../components/Message/Message'))
 
 function Login() {
+  const [logging, setLogging] = useState(false)
   const [message, setMessage] = useState({
     msg: '',
     type: 'default',
@@ -21,6 +23,7 @@ function Login() {
   useTitle('Log in')
 
   async function handleLogin() {
+    setLogging(true)
     const formData = FORM.getData(form?.current)
     if (!formData.ok) {
       setMessage({ msg: formData.msg, type: 'error', show: true })
@@ -28,6 +31,7 @@ function Login() {
         () => setMessage({ ...message, show: false }),
         msgData.time * 1000
       )
+      setLogging(false)
       return
     }
 
@@ -42,6 +46,7 @@ function Login() {
         () => setMessage({ ...message, show: false }),
         msgData.time * 1000
       )
+      setLogging(false)
       return
     }
   }
@@ -53,7 +58,7 @@ function Login() {
       <Message show={message.show} type={message.type}>
         {message.msg}
       </Message>
-      <div className="list_y">
+      <div className="list_y loading_area bd_ra">
         <div className="account_area list_y">
           <div className="df_ai_ce df_jc_sb">
             <div className="title list_x df_ai_ce">
@@ -100,6 +105,7 @@ function Login() {
             <span>Main page</span>
           </Button>
         )}
+        {logging && <Loading size="50px">Logging in</Loading>}
       </div>
     </div>
   )

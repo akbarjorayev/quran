@@ -1,6 +1,7 @@
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input'
 import Choose from '../../../components/Choose/Choose'
+import Loading from '../../../components/Loading/Loading'
 
 import * as FORM from '../../../js/utils/form'
 import { getLocalAccounts, signup } from '../../../js/account/account'
@@ -13,6 +14,7 @@ import React, { useRef, useState } from 'react'
 const Message = React.lazy(() => import('../../../components/Message/Message'))
 
 function Signup() {
+  const [signing, setSigning] = useState(false)
   const [message, setMessage] = useState({
     msg: '',
     type: 'default',
@@ -22,6 +24,7 @@ function Signup() {
   useTitle('Sign up')
 
   async function handleSignup() {
+    setSigning(true)
     const formData = FORM.getData(form?.current)
     if (!formData.ok) {
       setMessage({ msg: formData.msg, type: 'error', show: true })
@@ -29,6 +32,7 @@ function Signup() {
         () => setMessage({ ...message, show: false }),
         msgData.time * 1000
       )
+      setSigning(false)
       return
     }
 
@@ -43,6 +47,7 @@ function Signup() {
         () => setMessage({ ...message, show: false }),
         msgData.time * 1000
       )
+      setSigning(false)
       return
     }
   }
@@ -54,7 +59,7 @@ function Signup() {
       <Message show={message.show} type={message.type}>
         {message.msg}
       </Message>
-      <div className="list_y">
+      <div className="list_y loading_area bd_ra">
         <div className="account_area list_y">
           <div className="df_ai_ce df_jc_sb">
             <div className="title list_x df_ai_ce">
@@ -121,6 +126,7 @@ function Signup() {
             <span>Main page</span>
           </Button>
         )}
+        {signing && <Loading size="50px">Signing up</Loading>}
       </div>
     </div>
   )
