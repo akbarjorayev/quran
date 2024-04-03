@@ -9,7 +9,7 @@ async function signup(data) {
     ...data.inputs,
     ...data.chosen,
   }
-  const { username } = user
+  const { username, password } = user
 
   const notFreeUsername = await load(`accounts/${username}`)
   if (notFreeUsername) {
@@ -17,13 +17,9 @@ async function signup(data) {
   }
 
   await save(`accounts/${username}`, user)
+  await login({ inputs: { username, password }, ok: true })
 
-  saveLocal('quran', {
-    accounts: {
-      usernames: [username],
-      active: username,
-    },
-  })
+  window.location.href = '/'
   return { ok: true }
 }
 
@@ -64,6 +60,8 @@ async function login(data) {
   if (!localData.accounts.active) localData.accounts.active = username
 
   saveLocal('quran', localData)
+
+  window.location.href = '/'
   return { ok: true }
 }
 
@@ -140,6 +138,11 @@ async function getAccount(username) {
   return account
 }
 
+function getLocalAccounts() {
+  const { usernames } = loadLocal('quran').accounts
+  return usernames
+}
+
 function changeAccount(username) {
   const localData = loadLocal('quran')
   if (localData.accounts.usernames.includes(username))
@@ -155,6 +158,7 @@ export {
   login,
   logout,
   getAccount,
+  getLocalAccounts,
   editUser,
   changeAccount,
 }
