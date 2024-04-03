@@ -24,6 +24,8 @@ async function signup(data) {
       active: username,
     },
   })
+
+  window.location.href = '/'
   return { ok: true }
 }
 
@@ -64,6 +66,8 @@ async function login(data) {
   if (!localData.accounts.active) localData.accounts.active = username
 
   saveLocal('quran', localData)
+
+  window.location.href = '/'
   return { ok: true }
 }
 
