@@ -1,5 +1,9 @@
 .txt_opa {
-  color: color-mix(in srgb, var(--theme-color-not) 50%, var(--theme-color) 50%);
+  color: color-mix(
+    in srgb,
+    var(--theme-color-not) 40%,
+    var(--theme-color-not) 20%
+  );
 }
 
 .gender_male {
