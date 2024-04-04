@@ -98,8 +98,10 @@ export default function AccountList() {
         </div>
       )}
       {loading && (
-        <div className="con_bd_cl loading_area">
-          <Loading size="50px">Accounts list</Loading>
+        <div className="df_jc_ce">
+          <div className="con_bd_cl loading_area" style={{ width: '500px' }}>
+            <Loading size="50px">Accounts list</Loading>
+          </div>
         </div>
       )}
     </>
