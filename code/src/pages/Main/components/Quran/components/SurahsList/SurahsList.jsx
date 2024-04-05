@@ -1,12 +1,30 @@
+import Loading from '../../../../../../components/Loading/Loading'
+
+import useFetch from '../../../../../../hooks/useFetch'
+import { wait } from '../../../../../../js/utils/wait'
 import shape from './numShape.svg'
 
 import './SurahsList.css'
+import { useEffect, useState } from 'react'
 
-export default function SurahsList({ surahs }) {
+export default function SurahsList() {
+  const [loading, setLoading] = useState(true)
+  const { data: surahs } = useFetch('https://api.alquran.cloud/v1/surah')
+
+  useEffect(() => {
+    async function waiting() {
+      await wait(1000)
+      setLoading(false)
+    }
+    waiting()
+  }, [])
+
+  if (loading) return <Loading>Surahs are loading</Loading>
+
   return (
     <>
       <div className=" list_y">
-        {surahs?.map((surah, i) => {
+        {surahs.data?.map((surah, i) => {
           return (
             <div className="list_y" key={i}>
               <div className="con_ha surah df_ai_ce_child df_jc_sb">
@@ -27,7 +45,9 @@ export default function SurahsList({ surahs }) {
                 </div>
                 <b className="txt_gradient">{surah.name}</b>
               </div>
-              {surahs.length - 1 !== i && <div className="line_x_small"></div>}
+              {surahs.data.length - 1 !== i && (
+                <div className="line_x_small"></div>
+              )}
             </div>
           )
         })}
