@@ -7,7 +7,7 @@ import shape from './numShape.svg'
 import './SurahsList.css'
 import { useEffect, useState } from 'react'
 
-export default function SurahsList() {
+export default function SurahsList({ setSurahI }) {
   const [loading, setLoading] = useState(true)
   const { data: surahs } = useFetch('https://api.alquran.cloud/v1/surah')
 
@@ -23,11 +23,14 @@ export default function SurahsList() {
 
   return (
     <>
-      <div className=" list_y">
+      <div className="list_y">
         {surahs.data?.map((surah, i) => {
           return (
             <div className="list_y" key={i}>
-              <div className="con_ha surah df_ai_ce_child df_jc_sb">
+              <div
+                className="con_ha surah df_ai_ce_child df_jc_sb"
+                onClick={() => setSurahI(i + 1)}
+              >
                 <div className="list_x">
                   <div className="number df_f_ce">
                     <img src={shape} alt="shape" />
