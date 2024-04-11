@@ -7,8 +7,10 @@ import './Avatar.css'
 
 async function getName() {
   const username = loadLocal('quran').accounts.active
-  const name = await load(`accounts/${username}/name`)
+  console.log(username);
+  const name = await load(`accounts/${username}/user/name`)
 
+  console.log(name);
   return name[0]
 }
 

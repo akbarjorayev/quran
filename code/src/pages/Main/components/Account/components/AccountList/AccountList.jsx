@@ -23,7 +23,7 @@ export default function AccountList() {
       for (let i = 0; i < usernames.length; i++) {
         if (usernames[i] === active) continue
 
-        const data = await load(`accounts/${usernames[i]}`)
+        const data = await load(`accounts/${usernames[i]}/user`)
         dataArr.push(data)
       }
       setAccounts(dataArr)
