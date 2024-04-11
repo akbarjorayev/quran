@@ -12,10 +12,10 @@ import './ReadArea.css'
 export default function ReadArea({ index, setSurahI }) {
   const [loading, setLoading] = useState(true)
   const { data: arData } = useFetch(
-    `https://api.alquran.cloud/v1/surah/${index}}/ar.alafasy`
+    `https://api.alquran.cloud/v1/surah/${index}/ar.alafasy`
   )
   const { data: engData } = useFetch(
-    `https://api.alquran.cloud/v1/surah/${index}}/en.asad`
+    `https://api.alquran.cloud/v1/surah/${index}/en.asad`
   )
 
   useEffect(() => {
@@ -57,7 +57,6 @@ export default function ReadArea({ index, setSurahI }) {
             <div></div>
           </div>
         </div>
-        <div></div>
       </div>
     </>
   )
