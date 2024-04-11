@@ -26,6 +26,13 @@ export default function ReadArea({ index, setSurahI }) {
     waiting()
   }, [])
 
+  function saveSurah(e) {
+    const btn = e.target
+    const icon = btn.firstChild
+
+    icon.classList.toggle('fill')
+  }
+
   if (!index) return null
   const arSurahData = arData?.data
   const engSurahData = engData?.data
@@ -37,14 +44,27 @@ export default function ReadArea({ index, setSurahI }) {
           <Button className="bg_none medium" onClick={() => setSurahI(0)}>
             <span className="material-symbols-outlined fz_big">close</span>
           </Button>
-          <b className="txt_gradient fz_big">{arSurahData?.englishName}</b>
+          {arSurahData && (
+            <b className="txt_gradient fz_big list_x">
+              <div>{arSurahData?.number}.</div>
+              <div>{arSurahData?.englishName}</div>
+            </b>
+          )}
         </div>
         <div className="read_con list_y_big scroll_y">
           <div className="loading_area bd_ra df_jc_ce">
             {loading && (
               <Loading className="bd_ra">Surah's data is loading</Loading>
             )}
-            {!loading && <SurahName surahData={arSurahData} />}
+            {!loading && (
+              <div className="list_x df_jc_sb w_100">
+                <div></div>
+                <SurahName surahData={arSurahData} />
+                <div className="con_bg_df con_ha h_max" onClick={saveSurah}>
+                  <span className="material-symbols-outlined">bookmark</span>
+                </div>
+              </div>
+            )}
           </div>
           <div className="loading_area bd_ra">
             {loading && <Loading className="bd_ra">Ayahs are loading</Loading>}
