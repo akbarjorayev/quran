@@ -94,7 +94,7 @@ function AccountData() {
 
   async function logoutAccount() {
     const username = loadLocal('quran').accounts.active
-    const dbPassword = await load(`accounts/${username}/password`)
+    const dbPassword = await load(`accounts/${username}/user/password`)
     const password = logoutRef.current?.value
 
     const correct = dbPassword === password
@@ -113,7 +113,7 @@ function AccountData() {
 
   async function deleteAccount() {
     const username = loadLocal('quran').accounts.active
-    const dbPassword = await load(`accounts/${username}/password`)
+    const dbPassword = await load(`accounts/${username}/user/password`)
     const password = deleteRef.current?.value
 
     const correct = dbPassword === password
