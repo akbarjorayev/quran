@@ -6,11 +6,15 @@ import SurahName from './components/SurahName/SurahName'
 
 import useFetch from '../../../../../hooks/useFetch'
 import { wait } from '../../../../../js/utils/wait'
+import { toggleSurah } from '../../../../../js/db/quran/savedSurahs'
+import { loadLocal } from '../../../../../js/db/localStorage'
+import { load } from '../../../../../js/db/db'
 
 import './ReadArea.css'
 
 export default function ReadArea({ index, setSurahI }) {
   const [loading, setLoading] = useState(true)
+  const [savedSurahs, setSavedSurahs] = useState([])
   const { data: arData } = useFetch(
     `https://api.alquran.cloud/v1/surah/${index}/ar.alafasy`
   )
@@ -26,11 +30,21 @@ export default function ReadArea({ index, setSurahI }) {
     waiting()
   }, [])
 
-  function saveSurah(e) {
+  useEffect(() => {
+    async function loadData() {
+      const username = loadLocal('quran').accounts.active
+      const data = await load(`accounts/${username}/quran/saved`)
+      setSavedSurahs(data)
+    }
+    loadData()
+  }, [])
+
+  async function saveSurah(e) {
     const btn = e.target
     const icon = btn.firstChild
 
     icon.classList.toggle('fill')
+    toggleSurah(index)
   }
 
   if (!index) return null
@@ -61,7 +75,15 @@ export default function ReadArea({ index, setSurahI }) {
                 <div></div>
                 <SurahName surahData={arSurahData} />
                 <div className="con_bg_df con_ha h_max" onClick={saveSurah}>
-                  <span className="material-symbols-outlined">bookmark</span>
+                  <span
+                    className={`material-symbols-outlined ${
+                      savedSurahs.length > 0 && savedSurahs.includes(index)
+                        ? 'fill'
+                        : ''
+                    }`}
+                  >
+                    bookmark
+                  </span>
                 </div>
               </div>
             )}
