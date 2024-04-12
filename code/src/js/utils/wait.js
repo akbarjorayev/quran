@@ -1,7 +1,5 @@
-async function wait(time) {
-  return new Promise((res, rej) => {
-    setTimeout(() => res(), time)
-  })
+function wait(time) {
+  return new Promise((res) => setTimeout(res, time))
 }
 
 export { wait }
