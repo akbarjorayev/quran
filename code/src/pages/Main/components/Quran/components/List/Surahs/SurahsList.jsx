@@ -1,11 +1,11 @@
-import Loading from '../../../../../../components/Loading/Loading'
-
-import useFetch from '../../../../../../hooks/useFetch'
-import { wait } from '../../../../../../js/utils/wait'
-import shape from './numShape.svg'
-
-import './SurahsList.css'
 import { useEffect, useState } from 'react'
+import Loading from '../../../../../../../components/Loading/Loading'
+
+import useFetch from '../../../../../../../hooks/useFetch'
+import { wait } from '../../../../../../../js/utils/wait'
+import shape from '../numShape.svg'
+
+import '../List.css'
 
 export default function SurahsList({ setSurahI }) {
   const [loading, setLoading] = useState(true)
